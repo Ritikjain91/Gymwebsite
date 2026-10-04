@@ -396,11 +396,11 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
   }, [edition]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full select-none">
+    <div className="relative flex flex-col items-center justify-center w-full select-none mx-auto">
       {/* 3D Stage Canvas Container */}
       <div
         ref={mountRef}
-        className="relative w-full aspect-square max-w-[360px] sm:max-w-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden"
+        className="relative w-full aspect-square max-w-[360px] sm:max-w-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden mx-auto"
         title="Click and drag to rotate 3D plate"
       >
         {/* Ambient Glow behind plate */}
@@ -415,7 +415,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       </div>
 
       {/* Floating Interactive Badge & Switcher */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 z-10 w-full">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 z-10 w-full mx-auto">
         <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-gold)]">
           <button
             onClick={() => setEdition('prime')}

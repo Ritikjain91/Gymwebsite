@@ -121,8 +121,8 @@ export default function Hero() {
           </div>
 
           {/* Right Column: 3D Interactive Three.js Plate Viewer */}
-          <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="relative w-full max-w-[390px] flex items-center justify-center">
+          <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
+            <div className="relative w-full max-w-[380px] mx-auto lg:ml-auto lg:mr-0 flex flex-col items-center justify-center">
               {/* Background Glow */}
               <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[var(--gold-primary)]/20 via-transparent to-[var(--flame-accent)]/15 blur-3xl pointer-events-none scale-105" />
               <ThreePlateViewer initialEdition="prime" />

@@ -17,7 +17,7 @@ export default function Hero() {
   const { perspective, openModal } = useTheme();
 
   return (
-    <section className="relative min-h-[88vh] flex flex-col justify-between pt-6 pb-12 overflow-hidden border-b border-[var(--border-subtle)]">
+    <section className="relative flex flex-col pt-8 pb-0 overflow-hidden border-b border-[var(--border-subtle)]">
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -46,7 +46,7 @@ export default function Hero() {
       </div>
 
       {/* Main Content Grid */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto py-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4 mb-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Headlines & Call to Actions */}
           <div className="lg:col-span-7 flex flex-col items-start gap-5">
@@ -168,7 +168,7 @@ export default function Hero() {
       </div>
 
       {/* Infinite Marquee Strip */}
-      <div className="relative z-10 w-full overflow-hidden border-y border-[var(--border-subtle)] bg-[var(--bg-surface)] py-3">
+      <div className="relative z-10 w-full overflow-hidden border-t border-[var(--border-subtle)] bg-[var(--bg-surface)] py-3">
         <div className="marquee-track">
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex items-center gap-8 shrink-0 px-4 text-xs sm:text-sm font-extrabold uppercase tracking-widest text-[var(--text-secondary)]">

@@ -25,7 +25,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
 
     // 2. Camera setup - perfect 1:1 square aspect ratio
     const camera = new THREE.PerspectiveCamera(40, 1.0, 0.1, 100);
-    camera.position.set(0, 0, 4.2);
+    camera.position.set(0, 0, 5.2);
 
     // 3. Renderer setup
     const renderer = new THREE.WebGLRenderer({
@@ -403,13 +403,13 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       </div>
 
       {/* Floating Interactive Badge & Switcher */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 mt-3 z-10">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mt-4 z-10 w-full">
         <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-gold)]">
           <button
             onClick={() => setEdition('prime')}
-            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'prime'
-                ? 'bg-[var(--gold-primary)] text-black shadow-md'
+                ? 'bg-[var(--gold-primary)] text-black shadow-md font-extrabold'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
@@ -417,9 +417,9 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           </button>
           <button
             onClick={() => setEdition('luxury')}
-            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 ${
+            className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'luxury'
-                ? 'bg-[var(--gold-primary)] text-black shadow-md'
+                ? 'bg-[var(--gold-primary)] text-black shadow-md font-extrabold'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
@@ -427,7 +427,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           </button>
         </div>
 
-        <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium">
+        <div className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] font-medium whitespace-nowrap">
           <RotateCw className="w-3.5 h-3.5 animate-spin text-[var(--gold-primary)]" style={{ animationDuration: '6s' }} />
           <span>Drag 360°</span>
         </div>

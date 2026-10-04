@@ -45,7 +45,7 @@ export default function ClassSchedule() {
               <button
                 key={day}
                 onClick={() => setSelectedDay(day)}
-                className={`px-5 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
+                className={`px-5 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-300 border cursor-pointer shrink-0 whitespace-nowrap ${
                   isSelected
                     ? 'bg-[var(--gold-primary)] text-black border-[var(--gold-primary)] shadow-md'
                     : 'glass-panel text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--border-gold)]'
@@ -58,12 +58,12 @@ export default function ClassSchedule() {
         </div>
 
         {/* Category Filter Pills */}
-        <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 text-xs font-bold">
+        <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 text-xs font-bold no-scrollbar">
           {['All', 'Strength', 'HIIT', 'Combat', 'Mobility', 'Hypertrophy'].map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-1.5 rounded-full transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full transition-all cursor-pointer shrink-0 whitespace-nowrap ${
                 selectedCategory === cat
                   ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] font-extrabold'
                   : 'bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'

@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { useTheme } from './ThemeContext';
 import { Calculator, TrendingUp, DollarSign, Calendar, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export default function RoiCalculator() {
   const { openModal } = useTheme();
@@ -91,7 +92,8 @@ export default function RoiCalculator() {
 
   const handleSaveModel = () => {
     try {
-      const savedData = {
+      const savedScenario = {
+        id: `ROI-${Date.now()}`,
         formatType: format,
         cityTier,
         carpetArea,
@@ -102,16 +104,26 @@ export default function RoiCalculator() {
         estAnnualProfit: financialModel.annualEbitda,
         estPaybackMonths: financialModel.paybackMonths,
         estRoiPct: parseFloat(financialModel.roiPercentage),
-        timestamp: new Date().toISOString(),
+        savedAt: new Date().toISOString(),
       };
+
       if (typeof window !== 'undefined') {
-        localStorage.setItem('rawfit_roi_projection', JSON.stringify(savedData));
+        const scenarios = JSON.parse(localStorage.getItem('rf_saved_roi_scenarios') || '[]');
+        localStorage.setItem('rf_saved_roi_scenarios', JSON.stringify([savedScenario, ...scenarios]));
       }
+
+      setIsSaved(true);
+      confetti({
+        particleCount: 60,
+        spread: 60,
+        origin: { y: 0.7 },
+        colors: ['#d4af37', '#ffd700', '#ff6b35'],
+      });
+      setTimeout(() => setIsSaved(false), 4000);
     } catch {
-      // safe fallback
+      setIsSaved(true);
+      setTimeout(() => setIsSaved(false), 4000);
     }
-    setIsSaved(true);
-    setTimeout(() => setIsSaved(false), 4000);
   };
 
   const formatINR = (val: number) => {

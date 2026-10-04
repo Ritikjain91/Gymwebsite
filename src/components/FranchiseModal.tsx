@@ -53,12 +53,12 @@ export default function FranchiseModal() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    // Simulate realistic luxury verification delay
-    await new Promise((resolve) => setTimeout(resolve, 450));
-
     try {
+      // Simulate realistic submission delay for sleek UX
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
       const newInquiry = {
-        id: 'RFQ-' + Date.now(),
+        id: `INQ-${Date.now()}`,
         fullName,
         email,
         phone,
@@ -73,22 +73,22 @@ export default function FranchiseModal() {
       };
 
       if (typeof window !== 'undefined') {
-        const existing = JSON.parse(localStorage.getItem('rawfit_inquiries') || '[]');
-        existing.push(newInquiry);
-        localStorage.setItem('rawfit_inquiries', JSON.stringify(existing));
+        const existing = JSON.parse(localStorage.getItem('rf_franchise_inquiries') || '[]');
+        localStorage.setItem('rf_franchise_inquiries', JSON.stringify([newInquiry, ...existing]));
       }
-    } catch {
-      // safe fallback
-    }
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    confetti({
-      particleCount: 85,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#d4af37', '#ecd396', '#ff6b35'],
-    });
+      setIsSuccess(true);
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#d4af37', '#ecd396', '#ff6b35'],
+      });
+    } catch (err) {
+      setIsSuccess(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleTourSubmit = async (e: React.FormEvent) => {
@@ -96,12 +96,12 @@ export default function FranchiseModal() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    // Simulate realistic luxury verification delay
-    await new Promise((resolve) => setTimeout(resolve, 400));
-
     try {
-      const newTour = {
-        id: 'TOUR-' + Date.now(),
+      // Simulate realistic booking delay
+      await new Promise((resolve) => setTimeout(resolve, 600));
+
+      const newBooking = {
+        id: `TOUR-${Date.now()}`,
         fullName,
         phone,
         email,
@@ -114,23 +114,20 @@ export default function FranchiseModal() {
       };
 
       if (typeof window !== 'undefined') {
-        const existing = JSON.parse(localStorage.getItem('rawfit_tours') || '[]');
-        existing.push(newTour);
-        localStorage.setItem('rawfit_tours', JSON.stringify(existing));
+        const existing = JSON.parse(localStorage.getItem('rf_tour_bookings') || '[]');
+        localStorage.setItem('rf_tour_bookings', JSON.stringify([newBooking, ...existing]));
       }
-    } catch {
-      // safe fallback
-    }
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    confetti({
-      particleCount: 75,
-      spread: 60,
-      origin: { y: 0.6 },
-      colors: ['#d4af37', '#ecd396', '#ff6b35'],
-    });
-  };
+      setIsSuccess(true);
+      confetti({
+        particleCount: 70,
+        spread: 60,
+        origin: { y: 0.6 },
+        colors: ['#d4af37', '#ff6b35'],
+      });
+    } catch (err) {
+      setIsSuccess(true);
+    } finally {
       setIsSubmitting(false);
     }
   };

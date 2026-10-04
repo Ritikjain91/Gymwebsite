@@ -1,6 +1,6 @@
 # RAW FIT GYM — Ultra-Luxury Fitness & Franchise Web Platform
 
-A Next.js 16 + TypeScript web application paired with an Express.js & PostgreSQL backend. Engineered to provide an exceptional UI/UX, surpassing the original StoreBox site with interactive 3D physics, real-time financial modeling, and dual-mode user journeys.
+A Next.js 16 (App Router) + TypeScript + Tailwind CSS web application engineered for state-of-the-art UI/UX, surpassing the original StoreBox site with interactive 3D physics, real-time financial modeling, and dual-mode user journeys.
 
 ---
 
@@ -32,7 +32,7 @@ A Next.js 16 + TypeScript web application paired with an Express.js & PostgreSQL
   - Projected Annual Profit
   - Estimated Payback Horizon in Months
   - Annual Return on Capital (ROI %)
-- Directly connects to `/api/calculate` backend route to store leads.
+- Client-side persistence and scenario saving with celebratory confetti feedback.
 
 ### 4. 🏋️ Facility Masterplan (6 Training Zones)
 - Interactive tabbed explorer for all 6 zones:
@@ -55,27 +55,20 @@ A Next.js 16 + TypeScript web application paired with an Express.js & PostgreSQL
 ### 7. 🔄 Draggable Physical Transformation Slider
 - Interactive before/after split slider showing real 16-week member results.
 
-### 8. ⚡ Fullstack Backend (Node.js + Express + PostgreSQL)
-- Dedicated Express server (`server/server.ts`) with PostgreSQL connection pool (`server/db.ts`)
-- Pre-built `server/schema.sql` database schema for:
-  - `franchise_inquiries`
-  - `tour_bookings`
-  - `calculator_leads`
-  - `member_trial_bookings`
-- **Zero-Crash Resilient Architecture**: Automatically detects PostgreSQL availability. If a local database is not yet initialized, it gracefully activates an in-memory repository fallback.
+### 8. 📱 Seamless Franchise & VIP Day Pass Lead Funnel
+- Interactive modal with instant local state persistence.
+- Zero external backend required — pure client-side Next.js performance.
 
 ---
 
 ## 🚀 Running Locally
 
-Both the Next.js frontend and Express backend boot concurrently with a single command:
-
 ```bash
-# Start both Backend (Port 5000) and Next.js Frontend (Port 3000)
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
 ```
 
-### URLs
-- **Web Application**: [http://localhost:3000](http://localhost:3000)
-- **Express Backend API**: [http://localhost:5000](http://localhost:5000)
-- **API Health Check**: [http://localhost:5000/api/health](http://localhost:5000/api/health)
+Open [http://localhost:3000](http://localhost:3000) in your browser.

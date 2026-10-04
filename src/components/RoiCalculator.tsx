@@ -4,6 +4,8 @@ import React, { useState, useMemo } from 'react';
 import { useTheme } from './ThemeContext';
 import { Calculator, TrendingUp, DollarSign, Calendar, Sparkles, CheckCircle2, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import ScrollReveal from './ScrollReveal';
+import TiltCard from './TiltCard';
 
 export default function RoiCalculator() {
   const { openModal } = useTheme();
@@ -134,26 +136,29 @@ export default function RoiCalculator() {
     <section id="calculator" className="py-20 lg:py-28 relative border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] mb-3">
-            <Calculator className="w-3.5 h-3.5" />
-            <span>Interactive Financial Simulator</span>
+        <ScrollReveal direction="up" delay={50}>
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] mb-3">
+              <Calculator className="w-3.5 h-3.5" />
+              <span>Interactive Financial Simulator</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight">
+              Estimate Your <span className="text-gold-gradient">Franchise Returns</span>
+            </h2>
+            <p className="text-[var(--text-secondary)] mt-3 text-sm sm:text-base">
+              Adjust location demographics, floor square footage, and membership targets to simulate monthly gross turnover, operating margins, and payback horizon.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight">
-            Estimate Your <span className="text-gold-gradient">Franchise Returns</span>
-          </h2>
-          <p className="text-[var(--text-secondary)] mt-3 text-sm sm:text-base">
-            Adjust location demographics, floor square footage, and membership targets to simulate monthly gross turnover, operating margins, and payback horizon.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Main Calculator Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Controls Column */}
-          <div className="lg:col-span-7 glass-panel p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] flex flex-col gap-6">
-            <h3 className="text-lg font-black uppercase tracking-wider text-[var(--gold-primary)] border-b border-[var(--border-subtle)] pb-3">
-              1. Commercial & Catchment Parameters
-            </h3>
+          <ScrollReveal direction="right" delay={150} className="lg:col-span-7">
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] flex flex-col gap-6 h-full">
+              <h3 className="text-lg font-black uppercase tracking-wider text-[var(--gold-primary)] border-b border-[var(--border-subtle)] pb-3">
+                1. Commercial & Catchment Parameters
+              </h3>
 
             {/* Format Selection */}
             <div>
@@ -292,9 +297,10 @@ export default function RoiCalculator() {
               />
             </div>
           </div>
+        </ScrollReveal>
 
           {/* Results Summary Column */}
-          <div className="lg:col-span-5 flex flex-col">
+          <ScrollReveal direction="left" delay={200} className="lg:col-span-5">
             <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[var(--border-gold)] relative overflow-hidden shadow-2xl h-full flex flex-col justify-between">
               <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
                 <div>
@@ -391,7 +397,7 @@ export default function RoiCalculator() {
             <p className="text-[11px] text-[var(--text-muted)] text-center leading-relaxed">
               *Projections are computed based on operational historical averages across Tier 1 & 2 club locations. Final commercials are confirmed following property diligence.
             </p>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

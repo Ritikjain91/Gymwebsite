@@ -1,17 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from './ThemeContext';
 import ThreePlateViewer from './ThreePlateViewer';
-import {
-  ArrowRight,
-  TrendingUp,
-  Award,
-  ShieldCheck,
-  Sparkles,
-  Layers,
-  Percent,
-} from 'lucide-react';
+import ThreeBackgroundMesh from './ThreeBackgroundMesh';
+import { ArrowRight } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
+import TiltCard from './TiltCard';
+import AnimatedCounter from './AnimatedCounter';
 
 export default function Hero() {
   const { perspective, openModal } = useTheme();
@@ -43,6 +39,8 @@ export default function Hero() {
             backgroundSize: '28px 28px',
           }}
         />
+        {/* Interactive 3D Background Wave Mesh */}
+        <ThreeBackgroundMesh />
       </div>
 
       {/* Main Content Grid */}
@@ -51,120 +49,135 @@ export default function Hero() {
           {/* Left Column: Headlines & Call to Actions */}
           <div className="lg:col-span-7 flex flex-col items-start gap-6">
             {/* Top Pill Tag */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] animate-float">
-              <span className="w-2 h-2 rounded-full bg-[var(--gold-primary)] animate-ping" />
-              <span>
-                {perspective === 'investor'
-                  ? 'Institutional Franchise Opportunity'
-                  : 'Ultra-Luxury Athletic Destination'}
-              </span>
-            </div>
+            <ScrollReveal direction="down" delay={50}>
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] animate-float">
+                <span className="w-2 h-2 rounded-full bg-[var(--gold-primary)] animate-ping" />
+                <span>
+                  {perspective === 'investor'
+                    ? 'Institutional Franchise Opportunity'
+                    : 'Ultra-Luxury Athletic Destination'}
+                </span>
+              </div>
+            </ScrollReveal>
 
             {/* Dynamic Headline */}
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.96] uppercase text-[var(--text-primary)]">
-              {perspective === 'investor' ? (
-                <>
-                  Build The Next <br />
-                  <span className="text-gold-gradient">Raw Fit Gym</span>
-                </>
-              ) : (
-                <>
-                  Where Power Meets <br />
-                  <span className="text-gold-gradient">Elite Luxury</span>
-                </>
-              )}
-            </h1>
+            <ScrollReveal direction="up" delay={150}>
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[0.96] uppercase text-[var(--text-primary)]">
+                {perspective === 'investor' ? (
+                  <>
+                    Build The Next <br />
+                    <span className="text-gold-gradient">Raw Fit Gym</span>
+                  </>
+                ) : (
+                  <>
+                    Where Power Meets <br />
+                    <span className="text-gold-gradient">Elite Luxury</span>
+                  </>
+                )}
+              </h1>
+            </ScrollReveal>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg text-[var(--text-secondary)] font-normal max-w-2xl leading-relaxed">
-              {perspective === 'investor'
-                ? 'A premier fitness franchise engineered for institutional returns. Standardized architecture, prime catchments, and 6 synchronized revenue engines delivering 36%–48% projected EBITDA.'
-                : 'Experience biomechanical strength equipment, 4°C cryo cold plunge suites, cedar saunas, and certified coaching in an atmosphere created for high-achievers.'}
-            </p>
+            <ScrollReveal direction="up" delay={250}>
+              <p className="text-base sm:text-lg text-[var(--text-secondary)] font-normal max-w-2xl leading-relaxed">
+                {perspective === 'investor'
+                  ? 'A premier fitness franchise engineered for institutional returns. Standardized architecture, prime catchments, and 6 synchronized revenue engines delivering 36%–48% projected EBITDA.'
+                  : 'Experience biomechanical strength equipment, 4°C cryo cold plunge suites, cedar saunas, and certified coaching in an atmosphere created for high-achievers.'}
+              </p>
+            </ScrollReveal>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-1 w-full sm:w-auto">
-              {perspective === 'investor' ? (
-                <>
-                  <button
-                    onClick={() => openModal('franchise')}
-                    className="btn-gold text-sm py-3.5 px-7 shadow-xl w-full sm:w-auto flex items-center justify-center gap-2"
-                  >
-                    <span>Request Franchise Deck</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  <a
-                    href="#calculator"
-                    className="btn-outline text-sm py-3.5 px-7 w-full sm:w-auto flex items-center justify-center gap-2"
-                  >
-                    <span>Simulate ROI Model</span>
-                  </a>
-                </>
-              ) : (
-                <>
-                  <button
-                    onClick={() => openModal('tour')}
-                    className="btn-gold text-sm py-3.5 px-7 shadow-xl w-full sm:w-auto flex items-center justify-center gap-2"
-                  >
-                    <span>Book VIP Day Pass</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  <a
-                    href="#zones"
-                    className="btn-outline text-sm py-3.5 px-7 w-full sm:w-auto flex items-center justify-center gap-2"
-                  >
-                    <span>Explore Training Zones</span>
-                  </a>
-                </>
-              )}
-            </div>
+            <ScrollReveal direction="up" delay={350}>
+              <div className="flex flex-wrap items-center gap-4 pt-1 w-full sm:w-auto">
+                {perspective === 'investor' ? (
+                  <>
+                    <button
+                      onClick={() => openModal('franchise')}
+                      className="btn-gold text-sm py-3.5 px-7 shadow-xl w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Request Franchise Deck</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <a
+                      href="#calculator"
+                      className="btn-outline text-sm py-3.5 px-7 w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Simulate ROI Model</span>
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => openModal('tour')}
+                      className="btn-gold text-sm py-3.5 px-7 shadow-xl w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Book VIP Day Pass</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                    <a
+                      href="#zones"
+                      className="btn-outline text-sm py-3.5 px-7 w-full sm:w-auto flex items-center justify-center gap-2 cursor-pointer"
+                    >
+                      <span>Explore Training Zones</span>
+                    </a>
+                  </>
+                )}
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Right Column: 3D Interactive Three.js Plate Viewer */}
           <div className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center">
-            <div className="relative w-full max-w-[380px] mx-auto lg:ml-auto lg:mr-0 flex flex-col items-center justify-center">
-              {/* Background Glow */}
-              <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[var(--gold-primary)]/20 via-transparent to-[var(--flame-accent)]/15 blur-3xl pointer-events-none scale-105" />
-              <ThreePlateViewer initialEdition="prime" />
-            </div>
+            <ScrollReveal direction="left" delay={200}>
+              <div className="relative w-full max-w-[380px] mx-auto lg:ml-auto lg:mr-0 flex flex-col items-center justify-center">
+                {/* Background Glow */}
+                <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[var(--gold-primary)]/20 via-transparent to-[var(--flame-accent)]/15 blur-3xl pointer-events-none scale-105" />
+                <ThreePlateViewer initialEdition="prime" />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
 
-        {/* Aligned Full-Width 4-Column Highlights Strip */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-[var(--border-subtle)]">
-          <div className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-            <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
-              ₹1.80 Cr+
-            </span>
-            <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
-              Prime & Luxury Formats
-            </span>
+        {/* Aligned Full-Width 4-Column Highlights Strip with 3D Tilt Cards */}
+        <ScrollReveal direction="up" delay={400}>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 pt-8 border-t border-[var(--border-subtle)]">
+            <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+              <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
+                <AnimatedCounter prefix="₹" end={1.8} decimals={2} suffix=" Cr+" duration={2000} />
+              </span>
+              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
+                Prime & Luxury Formats
+              </span>
+            </TiltCard>
+
+            <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+              <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
+                <AnimatedCounter prefix="0" end={6} suffix=" Streams" duration={1800} />
+              </span>
+              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
+                Diversified Revenue
+              </span>
+            </TiltCard>
+
+            <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+              <span className="block text-2xl sm:text-3xl font-black text-[var(--flame-accent)]">
+                36% – 48%
+              </span>
+              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
+                Projected EBITDA
+              </span>
+            </TiltCard>
+
+            <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+              <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
+                <AnimatedCounter end={100} suffix="% Turnkey" duration={2200} />
+              </span>
+              <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
+                Corporate SOPs & Ops
+              </span>
+            </TiltCard>
           </div>
-          <div className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-            <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
-              06 Streams
-            </span>
-            <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
-              Diversified Revenue
-            </span>
-          </div>
-          <div className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-            <span className="block text-2xl sm:text-3xl font-black text-[var(--flame-accent)]">
-              36% – 48%
-            </span>
-            <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
-              Projected EBITDA
-            </span>
-          </div>
-          <div className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-            <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
-              100% Turnkey
-            </span>
-            <span className="text-xs uppercase tracking-wider text-[var(--text-muted)] font-bold mt-1 block">
-              Corporate SOPs & Ops
-            </span>
-          </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Infinite Marquee Strip */}

@@ -89,31 +89,29 @@ export default function RoiCalculator() {
     };
   }, [format, cityTier, carpetArea, activeMembers, ptConversionRate]);
 
-  const handleSaveModel = async () => {
+  const handleSaveModel = () => {
     try {
-      const response = await fetch('http://localhost:5000/api/calculate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          formatType: format,
-          cityTier,
-          carpetArea,
-          projectedMembers: activeMembers,
-          ptConversionPct: ptConversionRate,
-          estMonthlyRevenue: financialModel.totalMonthlyTurnover,
-          estMonthlyEbitda: financialModel.monthlyEbitda,
-          estAnnualProfit: financialModel.annualEbitda,
-          estPaybackMonths: financialModel.paybackMonths,
-          estRoiPct: parseFloat(financialModel.roiPercentage),
-        }),
-      });
-      setIsSaved(true);
-      setTimeout(() => setIsSaved(false), 4000);
-    } catch (e) {
-      // Local fallback
-      setIsSaved(true);
-      setTimeout(() => setIsSaved(false), 4000);
+      const savedData = {
+        formatType: format,
+        cityTier,
+        carpetArea,
+        projectedMembers: activeMembers,
+        ptConversionPct: ptConversionRate,
+        estMonthlyRevenue: financialModel.totalMonthlyTurnover,
+        estMonthlyEbitda: financialModel.monthlyEbitda,
+        estAnnualProfit: financialModel.annualEbitda,
+        estPaybackMonths: financialModel.paybackMonths,
+        estRoiPct: parseFloat(financialModel.roiPercentage),
+        timestamp: new Date().toISOString(),
+      };
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('rawfit_roi_projection', JSON.stringify(savedData));
+      }
+    } catch {
+      // safe fallback
     }
+    setIsSaved(true);
+    setTimeout(() => setIsSaved(false), 4000);
   };
 
   const formatINR = (val: number) => {

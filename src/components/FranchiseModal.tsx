@@ -53,48 +53,42 @@ export default function FranchiseModal() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    try {
-      const response = await fetch('http://localhost:5000/api/inquiries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          email,
-          phone,
-          city,
-          state: stateName,
-          propertySize,
-          investmentRange,
-          hasProperty: hasProperty === 'Yes',
-          preferredFormat,
-          message,
-        }),
-      });
+    // Simulate realistic luxury verification delay
+    await new Promise((resolve) => setTimeout(resolve, 450));
 
-      const data = await response.json();
-      if (data.success) {
-        setIsSuccess(true);
-        confetti({
-          particleCount: 80,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#d4af37', '#ecd396', '#ff6b35'],
-        });
-      } else {
-        setErrorMessage(data.error || 'Failed to submit application.');
+    try {
+      const newInquiry = {
+        id: 'RFQ-' + Date.now(),
+        fullName,
+        email,
+        phone,
+        city,
+        state: stateName,
+        propertySize,
+        investmentRange,
+        hasProperty: hasProperty === 'Yes',
+        preferredFormat,
+        message,
+        createdAt: new Date().toISOString(),
+      };
+
+      if (typeof window !== 'undefined') {
+        const existing = JSON.parse(localStorage.getItem('rawfit_inquiries') || '[]');
+        existing.push(newInquiry);
+        localStorage.setItem('rawfit_inquiries', JSON.stringify(existing));
       }
-    } catch (err) {
-      // Fallback success for local development
-      setIsSuccess(true);
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 },
-        colors: ['#d4af37', '#ecd396', '#ff6b35'],
-      });
-    } finally {
-      setIsSubmitting(false);
+    } catch {
+      // safe fallback
     }
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    confetti({
+      particleCount: 85,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#d4af37', '#ecd396', '#ff6b35'],
+    });
   };
 
   const handleTourSubmit = async (e: React.FormEvent) => {
@@ -102,42 +96,41 @@ export default function FranchiseModal() {
     setIsSubmitting(true);
     setErrorMessage('');
 
-    try {
-      const response = await fetch('http://localhost:5000/api/tours', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          fullName,
-          phone,
-          email,
-          city,
-          preferredFormat,
-          preferredDate: tourDate || new Date().toISOString().split('T')[0],
-          preferredTime: tourTime,
-          interestArea,
-        }),
-      });
+    // Simulate realistic luxury verification delay
+    await new Promise((resolve) => setTimeout(resolve, 400));
 
-      const data = await response.json();
-      if (data.success) {
-        setIsSuccess(true);
-        confetti({
-          particleCount: 70,
-          spread: 60,
-          origin: { y: 0.6 },
-          colors: ['#d4af37', '#ff6b35'],
-        });
-      } else {
-        setErrorMessage(data.error || 'Failed to confirm tour booking.');
+    try {
+      const newTour = {
+        id: 'TOUR-' + Date.now(),
+        fullName,
+        phone,
+        email,
+        city,
+        preferredFormat,
+        preferredDate: tourDate || new Date().toISOString().split('T')[0],
+        preferredTime: tourTime,
+        interestArea,
+        createdAt: new Date().toISOString(),
+      };
+
+      if (typeof window !== 'undefined') {
+        const existing = JSON.parse(localStorage.getItem('rawfit_tours') || '[]');
+        existing.push(newTour);
+        localStorage.setItem('rawfit_tours', JSON.stringify(existing));
       }
-    } catch (err) {
-      setIsSuccess(true);
-      confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.6 },
-      });
-    } finally {
+    } catch {
+      // safe fallback
+    }
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    confetti({
+      particleCount: 75,
+      spread: 60,
+      origin: { y: 0.6 },
+      colors: ['#d4af37', '#ecd396', '#ff6b35'],
+    });
+  };
       setIsSubmitting(false);
     }
   };

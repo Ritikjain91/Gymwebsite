@@ -17,8 +17,18 @@ export default function TransformationSlider() {
       }
     };
     updateWidth();
+
+    let observer: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
+      observer = new ResizeObserver(updateWidth);
+      observer.observe(containerRef.current);
+    }
+
     window.addEventListener('resize', updateWidth);
-    return () => window.removeEventListener('resize', updateWidth);
+    return () => {
+      if (observer) observer.disconnect();
+      window.removeEventListener('resize', updateWidth);
+    };
   }, []);
 
   const handleMove = (clientX: number) => {

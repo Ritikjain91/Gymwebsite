@@ -25,7 +25,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
 
     // 2. Camera setup - perfect 1:1 square aspect ratio
     const camera = new THREE.PerspectiveCamera(40, 1.0, 0.1, 100);
-    camera.position.set(0, 0, 5.2);
+    camera.position.set(0, 0, 5.4);
 
     // 3. Renderer setup
     const renderer = new THREE.WebGLRenderer({
@@ -256,25 +256,25 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
     const bumperMesh = new THREE.Mesh(bumperGeo, bumperMat);
     plateGroup.add(bumperMesh);
 
-    // Initial slight tilt
-    plateGroup.rotation.x = 0.22;
-    plateGroup.rotation.y = -0.32;
+    // Initial slight showcase tilt (faces user, slight 3D perspective)
+    plateGroup.rotation.x = 0.08;
+    plateGroup.rotation.y = -0.22;
     scene.add(plateGroup);
 
     // 7. Interactive Drag & Inertia Controls
     let isDragging = false;
     let previousMouseX = 0;
     let previousMouseY = 0;
-    let targetRotationX = 0.22;
-    let targetRotationY = -0.32;
-    let velocityY = 0.005;
+    let baseRotationX = 0.08;
+    let baseRotationY = -0.22;
+    let targetRotationX = 0.08;
+    let targetRotationY = -0.22;
 
     const onMouseDown = (e: MouseEvent) => {
       isDragging = true;
       setIsInteracting(true);
       previousMouseX = e.clientX;
       previousMouseY = e.clientY;
-      velocityY = 0;
     };
 
     const onMouseMove = (e: MouseEvent) => {
@@ -282,9 +282,12 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       const deltaX = e.clientX - previousMouseX;
       const deltaY = e.clientY - previousMouseY;
 
-      targetRotationY += deltaX * 0.008;
-      targetRotationX += deltaY * 0.008;
-      targetRotationX = Math.max(-1.0, Math.min(1.0, targetRotationX));
+      baseRotationY += deltaX * 0.008;
+      baseRotationX += deltaY * 0.008;
+      baseRotationX = Math.max(-0.8, Math.min(0.8, baseRotationX));
+
+      targetRotationY = baseRotationY;
+      targetRotationX = baseRotationX;
 
       previousMouseX = e.clientX;
       previousMouseY = e.clientY;
@@ -293,7 +296,6 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
     const onMouseUp = () => {
       isDragging = false;
       setIsInteracting(false);
-      velocityY = 0.004;
     };
 
     // Touch controls
@@ -303,7 +305,6 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
         setIsInteracting(true);
         previousMouseX = e.touches[0].clientX;
         previousMouseY = e.touches[0].clientY;
-        velocityY = 0;
       }
     };
 
@@ -312,9 +313,12 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       const deltaX = e.touches[0].clientX - previousMouseX;
       const deltaY = e.touches[0].clientY - previousMouseY;
 
-      targetRotationY += deltaX * 0.009;
-      targetRotationX += deltaY * 0.009;
-      targetRotationX = Math.max(-1.0, Math.min(1.0, targetRotationX));
+      baseRotationY += deltaX * 0.009;
+      baseRotationX += deltaY * 0.009;
+      baseRotationX = Math.max(-0.8, Math.min(0.8, baseRotationX));
+
+      targetRotationY = baseRotationY;
+      targetRotationX = baseRotationX;
 
       previousMouseX = e.touches[0].clientX;
       previousMouseY = e.touches[0].clientY;
@@ -334,13 +338,21 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
+      const time = Date.now() * 0.0016;
+
+      // Gentle floating suspension bobbing
+      plateGroup.position.y = Math.sin(time) * 0.06;
+
       if (!isDragging) {
-        targetRotationY += velocityY;
+        // Natural breathing sway around base orientation - stays facing the user!
+        const swayY = Math.sin(time * 0.7) * 0.06;
+        const swayX = Math.cos(time * 0.5) * 0.03;
+        targetRotationY = baseRotationY + swayY;
+        targetRotationX = baseRotationX + swayX;
       }
 
       plateGroup.rotation.y += (targetRotationY - plateGroup.rotation.y) * 0.08;
       plateGroup.rotation.x += (targetRotationX - plateGroup.rotation.x) * 0.08;
-      plateGroup.position.y = Math.sin(Date.now() * 0.0018) * 0.05;
 
       renderer.render(scene, camera);
     };
@@ -350,7 +362,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
     // 9. ResizeObserver to keep canvas strictly square and aligned
     const resizeObserver = new ResizeObserver((entries) => {
       for (const entry of entries) {
-        const newSize = Math.min(entry.contentRect.width || 420, 460);
+        const newSize = Math.min(entry.contentRect.width || 380, 400);
         camera.aspect = 1.0;
         camera.updateProjectionMatrix();
         renderer.setSize(newSize, newSize);
@@ -388,7 +400,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       {/* 3D Stage Canvas Container */}
       <div
         ref={mountRef}
-        className="relative w-full aspect-square max-w-[420px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden"
+        className="relative w-full aspect-square max-w-[360px] sm:max-w-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden"
         title="Click and drag to rotate 3D plate"
       >
         {/* Ambient Glow behind plate */}

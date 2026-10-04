@@ -17,7 +17,7 @@ export default function Hero() {
   const { perspective, openModal } = useTheme();
 
   return (
-    <section className="relative flex flex-col pt-8 pb-0 overflow-hidden border-b border-[var(--border-subtle)]">
+    <section className="relative flex flex-col pt-12 sm:pt-16 pb-0 overflow-hidden border-b border-[var(--border-subtle)]">
       {/* Background Video Layer */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
@@ -47,9 +47,9 @@ export default function Hero() {
 
       {/* Main Content Grid */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-4 mb-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Headlines & Call to Actions */}
-          <div className="lg:col-span-7 flex flex-col items-start gap-5">
+          <div className="lg:col-span-7 flex flex-col items-start gap-6">
             {/* Top Pill Tag */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] animate-float">
               <span className="w-2 h-2 rounded-full bg-[var(--gold-primary)] animate-ping" />
@@ -122,9 +122,9 @@ export default function Hero() {
 
           {/* Right Column: 3D Interactive Three.js Plate Viewer */}
           <div className="lg:col-span-5 flex flex-col items-center justify-center">
-            <div className="relative w-full max-w-[440px] flex items-center justify-center">
+            <div className="relative w-full max-w-[390px] flex items-center justify-center">
               {/* Background Glow */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-tr from-[var(--gold-primary)]/20 via-transparent to-[var(--flame-accent)]/10 blur-2xl pointer-events-none" />
+              <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[var(--gold-primary)]/20 via-transparent to-[var(--flame-accent)]/15 blur-3xl pointer-events-none scale-105" />
               <ThreePlateViewer initialEdition="prime" />
             </div>
           </div>

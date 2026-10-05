@@ -6,7 +6,7 @@ export interface FranchiseFormat {
   tagline: string;
   badge: string;
   investmentAmount: string;
-  investmentNumeric: number; // in Crores
+  investmentNumeric: number;
   areaSqFt: string;
   minArea: number;
   maxArea: number;
@@ -36,6 +36,81 @@ export interface TrainingZone {
   videoUrl?: string;
   primeAvailable: boolean;
   luxuryAvailable: boolean;
+}
+
+export interface GymProgram {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  benefit: string;
+  description: string;
+  keyOutcomes: string[];
+  idealFor: string;
+  image: string;
+  sessionDuration: string;
+  intensity: 'Moderate' | 'High' | 'Elite';
+  badge: string;
+}
+
+export interface TransformationStory {
+  id: string;
+  name: string;
+  age: number;
+  profession: string;
+  duration: string;
+  headline: string;
+  quote: string;
+  image: string;
+  stats: {
+    weightChange: string;
+    bodyFatChange: string;
+    muscleGain?: string;
+    timeline: string;
+  };
+  coach: string;
+  program: string;
+  verifiedInBody: boolean;
+}
+
+export interface MembershipPlan {
+  id: string;
+  name: string;
+  tagline: string;
+  badge?: string;
+  isPopular?: boolean;
+  monthlyPrice: number;
+  annualMonthlyPrice: number;
+  billingTerm: string;
+  description: string;
+  features: string[];
+  notIncluded?: string[];
+  ctaText: string;
+  perksNote: string;
+}
+
+export interface WhyChooseUsItem {
+  id: string;
+  number: string;
+  title: string;
+  headline: string;
+  description: string;
+  iconName: string;
+  statValue: string;
+  statLabel: string;
+  highlightChip: string;
+}
+
+export interface TestimonialItem {
+  id: string;
+  name: string;
+  role: string;
+  rating: number;
+  review: string;
+  memberSince: string;
+  avatar: string;
+  resultAchieved: string;
+  programTaken: string;
 }
 
 export interface RevenueStream {
@@ -70,7 +145,7 @@ export interface GymClass {
 
 export interface FaqItem {
   id: string;
-  category: 'franchise' | 'membership' | 'facility';
+  category: 'membership' | 'programs' | 'facility' | 'franchise';
   question: string;
   answer: string;
 }

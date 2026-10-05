@@ -1,59 +1,104 @@
 @import "tailwindcss";
 
 :root, [data-theme="dark"] {
-  --bg-primary: #070708;
-  --bg-surface: #101012;
-  --bg-surface-elevated: #18181b;
-  --bg-card: rgba(18, 18, 22, 0.72);
-  --bg-card-hover: rgba(26, 26, 32, 0.88);
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-light: rgba(255, 255, 255, 0.15);
-  --border-gold: rgba(212, 175, 55, 0.38);
-  --border-gold-glow: rgba(212, 175, 55, 0.7);
-  
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1aa;
-  --text-muted: #71717a;
-  --text-inverse: #09090b;
+  --bg-primary: #060709;
+  --bg-surface: #0b0d12;
+  --bg-surface-elevated: #11141c;
+  --bg-espresso: #0e1118;
+  --bg-card: rgba(14, 17, 24, 0.82);
+  --bg-card-hover: rgba(22, 26, 36, 0.94);
 
-  --gold-primary: #d4af37;
-  --gold-bright: #ecd396;
-  --gold-deep: #9a7533;
-  --gold-gradient: linear-gradient(135deg, #ecd396 0%, #d4af37 50%, #9a7533 100%);
-  --gold-glow: rgba(212, 175, 55, 0.22);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.16);
+  --border-volt: rgba(163, 230, 53, 0.45);
+  --border-volt-glow: rgba(190, 242, 100, 0.85);
+  --border-titanium: rgba(156, 163, 175, 0.25);
   
-  --flame-accent: #ff6b35;
-  --flame-gradient: linear-gradient(135deg, #ff8c42 0%, #ff5722 100%);
-  --hero-overlay: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.12) 0%, rgba(7, 7, 8, 0.85) 60%, #070708 100%);
-  --navbar-bg: rgba(7, 7, 8, 0.75);
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  --text-inverse: #060709;
+
+  /* FIT&FAB Electric Lime / Volt Green Theme */
+  --volt-primary: #a3e635;
+  --volt-bright: #bef264;
+  --volt-electric: #84cc16;
+  --volt-deep: #4d7c0f;
+  --volt-midnight: #0b0d12;
+
+  --volt-gradient: linear-gradient(135deg, #bef264 0%, #a3e635 50%, #84cc16 100%);
+  --volt-gradient-subtle: linear-gradient(135deg, rgba(190, 242, 100, 0.15) 0%, rgba(163, 230, 53, 0.25) 50%, rgba(11, 13, 18, 0.5) 100%);
+  --volt-glow: rgba(163, 230, 53, 0.35);
+  --volt-glow-intense: rgba(163, 230, 53, 0.75);
+
+  /* Blue / Secondary accents */
+  --blue-primary: #a3e635;
+  --blue-bright: #bef264;
+  --blue-electric: #84cc16;
+  --blue-gradient: linear-gradient(135deg, #bef264 0%, #a3e635 50%, #84cc16 100%);
+  --blue-glow: rgba(163, 230, 53, 0.35);
+  --blue-glow-intense: rgba(163, 230, 53, 0.75);
+
+  /* Legacy mapping aliases */
+  --violet-primary: #a3e635;
+  --violet-bright: #bef264;
+  --violet-deep: #65a30d;
+  --violet-gradient: linear-gradient(135deg, #bef264 0%, #a3e635 50%, #84cc16 100%);
+  --border-violet: rgba(163, 230, 53, 0.45);
+  --violet-glow: rgba(163, 230, 53, 0.35);
+  --gold-primary: #a3e635;
+  
+  --hero-overlay: radial-gradient(circle at 65% 35%, rgba(163, 230, 53, 0.12) 0%, rgba(6, 7, 9, 0.95) 65%, #060709 100%);
+  --navbar-bg: rgba(6, 7, 9, 0.92);
 }
 
 [data-theme="light"] {
-  --bg-primary: #f8f6f0;
+  --bg-primary: #f4f6f8;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #ece8de;
-  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-surface-elevated: #e5e7eb;
+  --bg-espresso: #dcfce7;
+  --bg-card: rgba(255, 255, 255, 0.95);
   --bg-card-hover: #ffffff;
-  --border-subtle: rgba(0, 0, 0, 0.08);
-  --border-light: rgba(0, 0, 0, 0.14);
-  --border-gold: rgba(184, 142, 34, 0.45);
-  --border-gold-glow: rgba(184, 142, 34, 0.75);
 
-  --text-primary: #121110;
-  --text-secondary: #474440;
-  --text-muted: #78736d;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-light: rgba(0, 0, 0, 0.15);
+  --border-volt: rgba(101, 163, 13, 0.55);
+  --border-volt-glow: rgba(132, 204, 22, 0.85);
+  --border-titanium: rgba(75, 85, 99, 0.25);
+
+  --text-primary: #0a0b0e;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
   --text-inverse: #ffffff;
 
-  --gold-primary: #b88e22;
-  --gold-bright: #d4af37;
-  --gold-deep: #7a5e14;
-  --gold-gradient: linear-gradient(135deg, #d4af37 0%, #b88e22 50%, #7a5e14 100%);
-  --gold-glow: rgba(184, 142, 34, 0.16);
+  --volt-primary: #65a30d;
+  --volt-bright: #84cc16;
+  --volt-electric: #4d7c0f;
+  --volt-deep: #3f6212;
+  --volt-midnight: #f9fafb;
 
-  --flame-accent: #e65100;
-  --flame-gradient: linear-gradient(135deg, #ff7043 0%, #e65100 100%);
-  --hero-overlay: radial-gradient(circle at 50% 30%, rgba(212, 175, 55, 0.15) 0%, rgba(248, 246, 240, 0.88) 60%, #f8f6f0 100%);
-  --navbar-bg: rgba(248, 246, 240, 0.82);
+  --volt-gradient: linear-gradient(135deg, #84cc16 0%, #65a30d 50%, #4d7c0f 100%);
+  --volt-gradient-subtle: linear-gradient(135deg, rgba(132, 204, 22, 0.12) 0%, rgba(101, 163, 13, 0.18) 100%);
+  --volt-glow: rgba(101, 163, 13, 0.25);
+  --volt-glow-intense: rgba(101, 163, 13, 0.5);
+
+  --blue-primary: #65a30d;
+  --blue-bright: #84cc16;
+  --blue-electric: #4d7c0f;
+  --blue-gradient: linear-gradient(135deg, #84cc16 0%, #65a30d 50%, #4d7c0f 100%);
+  --blue-glow: rgba(101, 163, 13, 0.25);
+  --blue-glow-intense: rgba(101, 163, 13, 0.5);
+
+  --violet-primary: #65a30d;
+  --violet-bright: #84cc16;
+  --violet-deep: #4d7c0f;
+  --violet-gradient: linear-gradient(135deg, #84cc16 0%, #65a30d 50%, #4d7c0f 100%);
+  --border-violet: rgba(101, 163, 13, 0.45);
+  --violet-glow: rgba(101, 163, 13, 0.25);
+  --gold-primary: #65a30d;
+
+  --hero-overlay: radial-gradient(circle at 65% 35%, rgba(132, 204, 22, 0.12) 0%, rgba(244, 246, 248, 0.94) 65%, #f4f6f8 100%);
+  --navbar-bg: rgba(244, 246, 248, 0.94);
 }
 
 @layer base {
@@ -64,7 +109,7 @@
 
   html {
     scroll-behavior: smooth;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color-scheme: dark light;
   }
 
@@ -74,193 +119,210 @@
     transition: background-color 0.4s ease, color 0.4s ease;
     overflow-x: hidden;
     line-height: 1.6;
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: 'Anton', 'IBM Plex Sans', sans-serif;
+    letter-spacing: 0.03em;
+    font-weight: 400;
   }
 }
 
-/* Custom Luxury Scrollbar */
+/* Custom Luxury Lime / Volt Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--border-gold);
+  background: var(--volt-primary);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gold-primary);
+  background: var(--volt-bright);
 }
 
-/* Typography Helpers */
-.text-gold-gradient {
-  background: var(--gold-gradient);
+/* Typography Helpers with High-Voltage Lime Gradients */
+.text-volt-gradient, .text-lime-gradient, .text-blue-gradient, .text-violet-gradient, .text-gold-gradient {
+  background: var(--volt-gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.text-flame-gradient {
-  background: var(--flame-gradient);
+.text-cyan-gradient {
+  background: linear-gradient(135deg, #f7fee7 0%, #bef264 50%, #84cc16 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Glassmorphism Classes */
+.outline-volt-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--volt-bright);
+}
+.outline-blue-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--volt-bright);
+}
+
+/* Glassmorphism Classes with Deep Obsidian Tint */
 .glass-panel {
   background: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel-hover:hover {
   background: var(--bg-card-hover);
-  border-color: var(--border-gold);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px var(--gold-glow);
+  border-color: var(--border-volt);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px var(--volt-glow);
 }
 
-/* Gold Accent Button */
-.btn-gold {
+/* Volt Green Pill Buttons (Matching "JOIN THE FORCE" in Reference Image) */
+.btn-volt, .btn-force, .btn-violet, .btn-gold, .btn-blue {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  font-weight: 600;
+  padding: 0.85rem 2.2rem;
+  font-weight: 900;
   font-size: 0.875rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #09090b;
-  background: var(--gold-gradient);
+  color: #060709;
+  background: #a3e635;
+  background: var(--volt-gradient);
   border-radius: 9999px;
   overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-  box-shadow: 0 4px 20px var(--gold-glow);
+  box-shadow: 0 0 25px var(--volt-glow);
 }
-.btn-gold:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
-  filter: brightness(1.08);
+.btn-volt:hover, .btn-force:hover, .btn-violet:hover, .btn-gold:hover, .btn-blue:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px var(--volt-glow-intense);
+  filter: brightness(1.1);
 }
-.btn-gold:active {
-  transform: translateY(0);
+.btn-volt:active, .btn-force:active, .btn-violet:active, .btn-gold:active, .btn-blue:active {
+  transform: translateY(0) scale(0.98);
 }
 
-/* Glass Outline Button */
+/* Continuous Light Sheen Animation across Buttons */
+.btn-volt::after, .btn-force::after, .btn-violet::after, .btn-blue::after, .btn-gold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  animation: buttonSheen 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes buttonSheen {
+  0%, 75% {
+    left: -100%;
+  }
+  100% {
+    left: 200%;
+  }
+}
+
+/* Glass Outline Button with Volt Edge Glow */
 .btn-outline {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
-  font-weight: 600;
+  padding: 0.85rem 2rem;
+  font-weight: 800;
   font-size: 0.875rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-primary);
   background: transparent;
   border: 1px solid var(--border-light);
   border-radius: 9999px;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
   transition: all 0.25s ease;
 }
 .btn-outline:hover {
-  border-color: var(--gold-primary);
-  color: var(--gold-primary);
-  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--volt-bright);
+  color: var(--volt-bright);
+  background: rgba(163, 230, 53, 0.1);
   transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(163, 230, 53, 0.25);
 }
 
-/* Animations */
-@keyframes goldPulse {
+/* Glowing Breathing Animations */
+@keyframes voltPulse {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.25);
+    opacity: 0.85;
   }
   50% {
-    box-shadow: 0 0 35px rgba(212, 175, 55, 0.55);
+    box-shadow: 0 0 55px rgba(190, 242, 100, 0.65);
+    opacity: 1;
   }
 }
 
 @keyframes floatSlow {
   0%, 100% {
-    transform: translateY(0px);
+    transform: translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-10px) rotate(1deg);
   }
 }
 
-@keyframes shimmerSweep {
-  0% {
-    background-position: -200% 0;
+@keyframes gymWeightBob {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
   }
-  100% {
-    background-position: 200% 0;
+  50% {
+    transform: translateY(-8px) rotate(-1.5deg);
   }
 }
 
-.animate-pulse-gold {
-  animation: goldPulse 3.5s infinite ease-in-out;
+@keyframes borderGlowPulse {
+  0%, 100% {
+    border-color: rgba(163, 230, 53, 0.4);
+    box-shadow: 0 0 20px rgba(163, 230, 53, 0.25);
+  }
+  50% {
+    border-color: rgba(190, 242, 100, 0.95);
+    box-shadow: 0 0 45px rgba(163, 230, 53, 0.6);
+  }
+}
+
+.animate-pulse-violet, .animate-pulse-blue, .animate-pulse-volt {
+  animation: voltPulse 4s infinite ease-in-out;
 }
 
 .animate-float {
   animation: floatSlow 5s infinite ease-in-out;
 }
 
-@keyframes rotateBorder {
-  0% {
-    --angle: 0deg;
-  }
-  100% {
-    --angle: 360deg;
-  }
+.animate-gym-weight {
+  animation: gymWeightBob 6s infinite ease-in-out;
 }
 
-@keyframes goldBreathing {
-  0%, 100% {
-    opacity: 0.35;
-    transform: scale(0.98);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.04);
-  }
-}
-
-.animate-glow-breathe {
-  animation: goldBreathing 4s infinite ease-in-out;
-}
-
-/* 3D Glass Card Shine */
-.card-3d-shine {
-  position: relative;
-  overflow: hidden;
-}
-.card-3d-shine::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    60deg,
-    transparent 30%,
-    rgba(255, 215, 0, 0.08) 50%,
-    transparent 70%
-  );
-  transform: rotate(30deg) translateY(-100%);
-  transition: transform 0.75s ease;
-  pointer-events: none;
-}
-.card-3d-shine:hover::after {
-  transform: rotate(30deg) translateY(100%);
+.border-glow-animated {
+  animation: borderGlowPulse 3s infinite ease-in-out;
 }
 
 /* Marquee Animation */
@@ -276,9 +338,20 @@
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 35s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 .marquee-track:hover {
   animation-play-state: paused;
 }
 
+/* Subtle Animated Mesh Background */
+.mesh-gradient-bg {
+  background: radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 50%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+              radial-gradient(at 50% 100%, rgba(15, 23, 42, 0.6) 0px, transparent 50%);
+}
+
+/* Noise overlay */
+.noise-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+}

@@ -1,66 +1,80 @@
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
-import BrandPhilosophy from '../components/BrandPhilosophy';
-import FormatComparison from '../components/FormatComparison';
-import RoiCalculator from '../components/RoiCalculator';
-import ZoneExplorer from '../components/ZoneExplorer';
-import RevenueEngine from '../components/RevenueEngine';
-import Roadmap from '../components/Roadmap';
+import StatsSection from '../components/StatsSection';
+import ProgramsSection from '../components/ProgramsSection';
+import TransformationSlider from '../components/TransformationSlider';
+import VisualStorytellingSection from '../components/VisualStorytellingSection';
+import WhyChooseUs from '../components/WhyChooseUs';
+import AboutSection from '../components/AboutSection';
 import ClassSchedule from '../components/ClassSchedule';
 import BmiCalculator from '../components/BmiCalculator';
-import TransformationSlider from '../components/TransformationSlider';
-import SiteCriteria from '../components/SiteCriteria';
+import TestimonialsSection from '../components/TestimonialsSection';
+import PricingSection from '../components/PricingSection';
 import FaqSection from '../components/FaqSection';
+import CtaBanner from '../components/CtaBanner';
+import ContactSection from '../components/ContactSection';
 import Footer from '../components/Footer';
 import FranchiseModal from '../components/FranchiseModal';
+import FloatingWhatsApp from '../components/FloatingWhatsApp';
+import MobileActionBar from '../components/MobileActionBar';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-400 relative">
-      {/* Navigation */}
+    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-400 relative pb-16 sm:pb-0">
+      {/* 01. Sticky Minimal Luxury Navigation */}
       <Navbar />
 
-      {/* Hero Section with Interactive 3D Plate Viewer */}
+      {/* 02. Section 1: Full-Screen Cinematic Hero */}
       <Hero />
 
-      {/* Brand Ethos & Institutional Standards */}
-      <BrandPhilosophy />
+      {/* 03. Section 2: Large Statistics Editorial Strip */}
+      <StatsSection />
 
-      {/* Prime (₹1.80 Cr) vs Luxury (₹3.20 Cr) Formats */}
-      <FormatComparison />
+      {/* 04. Section 3: Programs Using Large Editorial Cards */}
+      <ProgramsSection />
 
-      {/* Interactive Franchise ROI Simulator */}
-      <RoiCalculator />
-
-      {/* 6 Training Zones & Recovery Suite */}
-      <ZoneExplorer />
-
-      {/* 6 Diversified Revenue Streams */}
-      <RevenueEngine />
-
-      {/* 7-Step Turnkey Launch Roadmap */}
-      <Roadmap />
-
-      {/* Curated Masterclasses Timetable (Athlete View) */}
-      <ClassSchedule />
-
-      {/* Athletic Biometrics & Caloric Calculator */}
-      <BmiCalculator />
-
-      {/* Draggable Physical Transformation Slider */}
+      {/* 05. Section 4: Interactive Draggable Transformation Section */}
       <TransformationSlider />
 
-      {/* Commercial Property Diligence & Criteria */}
-      <SiteCriteria />
+      {/* 06. Section 5: 3D / Visual Storytelling Section */}
+      <VisualStorytellingSection />
 
-      {/* Frequently Asked Questions */}
+      {/* 07. Section 6: Why Choose Us (Editorial Layout 01–04) */}
+      <WhyChooseUs />
+
+      {/* 08. About & 30,000 SQ FT Facility Sanctuary */}
+      <AboutSection />
+
+      {/* 09. Interactive Masterclasses Timetable */}
+      <ClassSchedule />
+
+      {/* 10. Athletic Biometrics & Caloric Target Calculator */}
+      <BmiCalculator />
+
+      {/* 11. Section 7: Realistic Testimonials */}
+      <TestimonialsSection />
+
+      {/* 12. Section 8: Premium Membership / Pricing */}
+      <PricingSection />
+
+      {/* 13. Frequently Asked Questions */}
       <FaqSection />
 
-      {/* Footer */}
+      {/* 14. Section 9: Strong Final CTA Banner */}
+      <CtaBanner />
+
+      {/* 15. Contact / Instant VIP Trial Booking & Location Map */}
+      <ContactSection />
+
+      {/* 16. Section 10: Premium Agency Footer */}
       <Footer />
 
-      {/* Interactive Lead Capture Modal */}
+      {/* Interactive Global VIP Booking & Franchise Modal */}
       <FranchiseModal />
+
+      {/* Floating Action Triggers */}
+      <FloatingWhatsApp />
+      <MobileActionBar />
     </main>
   );
 }

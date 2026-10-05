@@ -2,159 +2,312 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { useTheme } from './ThemeContext';
-import { ArrowLeftRight, Trophy, ArrowRight } from 'lucide-react';
+import { ArrowLeftRight, Trophy, ArrowRight, ShieldCheck, Flame, Star, CheckCircle } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 import TiltCard from './TiltCard';
 import AnimatedCounter from './AnimatedCounter';
 
+interface ClientCase {
+  id: string;
+  name: string;
+  age: number;
+  role: string;
+  duration: string;
+  headline: string;
+  quote: string;
+  image: string;
+  metrics: {
+    weightLost: string;
+    bodyFatDrop: string;
+    muscleAdded: string;
+    timeline: string;
+  };
+  coach: string;
+  protocol: string;
+}
+
+const CASES: ClientCase[] = [
+  {
+    id: 'c1',
+    name: 'David Sterling',
+    age: 38,
+    role: 'Managing Partner, Private Equity',
+    duration: '24 Weeks Protocol',
+    headline: 'Lost 15kg Fat, Gained 4.5kg Muscle & Reversed 10 Years Of Sedentary Fatigue',
+    quote: 'Raw Fit Gym fundamentally re-engineered my physique. Training under CSCS coaches combined with the 4°C cold plunge after heavy compound pulls eliminated my back pain and restored my athletic energy.',
+    image: '/transformation-1.jpg',
+    metrics: {
+      weightLost: '-15 KG (-33 LBS)',
+      bodyFatDrop: '20% → 10% BF',
+      muscleAdded: '+4.5 KG Muscle',
+      timeline: '24 Weeks',
+    },
+    coach: 'Vikram Rajput (CSCS)',
+    protocol: 'Strength Hypertrophy & Metabolic Shred',
+  },
+  {
+    id: 'c2',
+    name: 'Sarah Jenkins',
+    age: 32,
+    role: 'Architectural Director',
+    duration: '12 Months Progression',
+    headline: 'From Exhausted & Intimidated To Lifting 110kg Deadlifts & Hyrox Conditioning',
+    quote: 'I used to think lifting heavy was not for women. At Raw Fit, the coaches taught me proper biomechanics and progressive overload. I dropped 3 dress sizes, doubled my strength, and gained unstoppable confidence.',
+    image: '/transformation-2.jpg',
+    metrics: {
+      weightLost: '-11 KG Tone',
+      bodyFatDrop: '28% → 17% BF',
+      muscleAdded: '+3.2 KG Muscle',
+      timeline: '12 Months',
+    },
+    coach: 'Dr. Sarah Mathews',
+    protocol: 'Functional Conditioning & Clinical Nutrition',
+  },
+];
+
 export default function TransformationSlider() {
   const { openModal } = useTheme();
-  const [sliderPosition, setSliderPosition] = useState(50);
-  const [containerWidth, setContainerWidth] = useState<number>(896);
+  const [activeCaseIdx, setActiveCaseIdx] = useState(0);
+  const [sliderPos, setSliderPos] = useState(50);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const updateWidth = () => {
-      if (containerRef.current) {
-        setContainerWidth(containerRef.current.clientWidth);
-      }
-    };
-    updateWidth();
+  const activeCase = CASES[activeCaseIdx];
 
-    let observer: ResizeObserver | null = null;
-    if (typeof ResizeObserver !== 'undefined' && containerRef.current) {
-      observer = new ResizeObserver(updateWidth);
-      observer.observe(containerRef.current);
-    }
-
-    window.addEventListener('resize', updateWidth);
-    return () => {
-      if (observer) observer.disconnect();
-      window.removeEventListener('resize', updateWidth);
-    };
-  }, []);
-
-  const handleMove = (clientX: number) => {
+  const handlePointerMove = (clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = clientX - rect.left;
-    const percent = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setSliderPosition(percent);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    handleMove(e.touches[0].clientX);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (e.buttons === 1) {
-      handleMove(e.clientX);
-    }
+    const pct = Math.max(5, Math.min(95, (x / rect.width) * 100));
+    setSliderPos(pct);
   };
 
   return (
-    <section id="transformations" className="py-20 lg:py-28 relative border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] overflow-hidden">
+    <section id="transformations" className="py-20 sm:py-32 relative border-b border-[var(--border-subtle)] bg-[var(--bg-primary)] overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-[var(--gold-primary)]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-10 w-[600px] h-[600px] bg-[radial-gradient(circle,rgba(168,85,247,0.08),transparent_70%)] pointer-events-none blur-3xl" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(121,40,202,0.06),transparent_70%)] pointer-events-none blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
         <ScrollReveal direction="up" delay={50}>
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-bold uppercase tracking-wider text-[var(--gold-primary)] mb-3">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-[var(--border-violet)] text-xs font-bold uppercase tracking-wider text-[var(--violet-bright)] mb-4">
               <Trophy className="w-3.5 h-3.5" />
-              <span>Proven Physical Transformations</span>
+              <span>VERIFIED INBODY 770 METRICS</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight">
-              Real Athletes. <span className="text-gold-gradient">Documented Results.</span>
+            <h2 className="text-4xl sm:text-6xl font-black uppercase tracking-tighter text-[var(--text-primary)]">
+              REAL DISCIPLINE. <br />
+              <span className="text-violet-gradient">DOCUMENTED RESULTS.</span>
             </h2>
-            <p className="text-[var(--text-secondary)] mt-3 text-sm sm:text-base">
-              Drag the interactive slider below to inspect 16-week physiological recomposition achieved through RawFit biomechanical coaching and contrast therapy protocols.
+            <p className="text-[var(--text-secondary)] mt-4 text-sm sm:text-base leading-relaxed">
+              Every transformation is verified with clinical multi-frequency bio-impedance scans. 
+              No filters, no deceptive camera angles—just hard, undeniable proof of physical evolution.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Interactive Comparison Slider */}
-        <div className="max-w-4xl mx-auto">
-          <ScrollReveal direction="up" delay={150}>
-            <div
-              ref={containerRef}
-              onMouseMove={handleMouseMove}
-              onTouchMove={handleTouchMove}
-              className="relative rounded-3xl overflow-hidden aspect-[16/10] sm:aspect-[16/9] border border-[var(--border-gold)] shadow-2xl select-none cursor-ew-resize glass-panel"
-            >
-              {/* AFTER Image (Background Base) */}
-              <div className="absolute inset-0">
-                <img
-                  src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1400&q=80"
-                  alt="After 16 Weeks Transformation"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute top-6 right-6 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-xs font-black uppercase text-gold-gradient">
-                  After: 16 Weeks (7.8% Body Fat)
-                </div>
-              </div>
-
-              {/* BEFORE Image (Clipped Layer on Top - Exactly matches width of container) */}
-              <div
-                className="absolute inset-0 overflow-hidden"
-                style={{ width: `${sliderPosition}%` }}
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=1400&q=80"
-                  alt="Before Transformation"
-                  className="absolute inset-0 h-full object-cover max-w-none pointer-events-none"
-                  style={{ width: `${containerWidth}px` }}
-                />
-                <div className="absolute top-6 left-6 px-4 py-1.5 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-xs font-black uppercase text-white whitespace-nowrap">
-                  Before: Baseline (22.4% Body Fat)
-                </div>
-              </div>
-
-              {/* Draggable Divider Line */}
-              <div
-                className="absolute top-0 bottom-0 w-1 bg-[var(--gold-primary)] shadow-[0_0_15px_rgba(212,175,55,0.8)] pointer-events-none"
-                style={{ left: `${sliderPosition}%` }}
-              >
-                <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[var(--gold-primary)] text-black flex items-center justify-center shadow-2xl border-2 border-white pointer-events-auto">
-                  <ArrowLeftRight className="w-4 h-4 font-black" />
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          {/* Member Metric Callout Card with TiltCard */}
-          <ScrollReveal direction="up" delay={250}>
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-              <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)]">
-                <span className="block text-xs uppercase font-bold text-[var(--text-muted)]">Athlete</span>
-                <span className="text-lg font-black text-[var(--text-primary)]">Karan V., 31 Yrs</span>
-              </TiltCard>
-              <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)]">
-                <span className="block text-xs uppercase font-bold text-[var(--text-muted)]">Transformation Delta</span>
-                <span className="text-lg font-black text-[var(--flame-accent)]">
-                  <AnimatedCounter prefix="-" end={14.6} decimals={1} suffix="% Body Fat" duration={2200} />
-                </span>
-              </TiltCard>
-              <TiltCard maxTilt={8} className="p-4 rounded-2xl glass-panel border border-[var(--border-subtle)]">
-                <span className="block text-xs uppercase font-bold text-[var(--text-muted)]">Lean Mass Added</span>
-                <span className="text-lg font-black text-gold-gradient">
-                  <AnimatedCounter prefix="+" end={5.8} decimals={1} suffix=" KG Muscle" duration={2400} />
-                </span>
-              </TiltCard>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal direction="up" delay={300}>
-            <div className="text-center mt-6">
+        {/* Client Selection Switcher */}
+        <ScrollReveal direction="up" delay={150}>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+            {CASES.map((c, idx) => (
               <button
-                onClick={() => openModal('tour')}
-                className="btn-gold py-3.5 px-8 text-xs font-extrabold uppercase tracking-wider inline-flex items-center gap-2 cursor-pointer"
+                key={c.id}
+                onClick={() => setActiveCaseIdx(idx)}
+                className={`px-6 py-3 rounded-full text-xs font-black uppercase tracking-wider transition-all duration-300 cursor-pointer flex items-center gap-3 border ${
+                  activeCaseIdx === idx
+                    ? 'bg-[var(--violet-primary)] text-white border-[var(--violet-primary)] shadow-lg shadow-[rgba(168,85,247,0.35)] scale-105'
+                    : 'glass-panel border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-violet)]'
+                }`}
               >
-                <span>Start Your Transformation Journey</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>{c.name}</span>
+                <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold ${
+                  activeCaseIdx === idx ? 'bg-black/30 text-white' : 'bg-[var(--border-subtle)] text-[var(--violet-bright)]'
+                }`}>
+                  {c.duration}
+                </span>
               </button>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* Transformation Showcase Container */}
+        <ScrollReveal direction="up" delay={250}>
+          <div className="rounded-3xl glass-panel border border-[var(--border-violet)] overflow-hidden shadow-2xl bg-gradient-to-br from-[var(--bg-card)] via-[#120d18] to-[var(--bg-surface)]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+              {/* Left Column: Authentic Split Before & After Visual with Interactive Draggable Curtain */}
+              <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[520px] overflow-hidden select-none">
+                <div
+                  ref={containerRef}
+                  onMouseMove={(e) => {
+                    if (e.buttons === 1) handlePointerMove(e.clientX);
+                  }}
+                  onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+                  className="relative w-full h-full min-h-[380px] sm:min-h-[520px] cursor-ew-resize overflow-hidden"
+                >
+                  {/* Full image display */}
+                  <img
+                    src={activeCase.image}
+                    alt={`${activeCase.name} Transformation Result`}
+                    className="w-full h-full object-cover select-none pointer-events-none filter contrast-115"
+                  />
+
+                  {/* Gradient shade overlays */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/30 pointer-events-none" />
+
+                  {/* Draggable Vertical Slider Handle */}
+                  <div
+                    className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(255,255,255,0.8)]"
+                    style={{ left: `${sliderPos}%` }}
+                  >
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[var(--violet-primary)] border-2 border-white shadow-xl flex items-center justify-center text-white">
+                      <ArrowLeftRight className="w-4 h-4" />
+                    </div>
+                  </div>
+
+                  {/* Top Tags */}
+                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
+                    <span className="px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-emerald-500/50 text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5" />
+                      Verified InBody 770 Scan
+                    </span>
+                    <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-black uppercase tracking-wider text-[var(--violet-bright)] border border-[var(--border-violet)]">
+                      {activeCase.metrics.timeline}
+                    </span>
+                  </div>
+
+                  {/* Bottom Client Bar */}
+                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/10 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+                    <div>
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--violet-bright)] block">
+                        Client Profile
+                      </span>
+                      <span className="text-base font-black text-white">
+                        {activeCase.name}, {activeCase.age}
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)] block">
+                        {activeCase.role}
+                      </span>
+                    </div>
+
+                    <div className="text-right">
+                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--text-muted)] block">
+                        Head Master Coach
+                      </span>
+                      <span className="text-sm font-black text-[var(--violet-bright)]">
+                        {activeCase.coach}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Verified Metrics & Quote */}
+              <div className="lg:col-span-5 p-7 sm:p-10 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-1 text-[var(--violet-bright)] mb-3">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[var(--violet-bright)]" />
+                    ))}
+                    <span className="text-xs font-bold text-[var(--text-primary)] ml-2">
+                      5.0 Verified Member Milestone
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-black uppercase text-[var(--text-primary)] mb-4 leading-snug font-display">
+                    &ldquo;{activeCase.headline}&rdquo;
+                  </h3>
+
+                  {/* Quote */}
+                  <blockquote className="p-4 rounded-2xl bg-[var(--bg-card)] border-l-4 border-[var(--violet-primary)] text-xs sm:text-sm text-[var(--text-secondary)] italic leading-relaxed mb-6">
+                    &ldquo;{activeCase.quote}&rdquo;
+                  </blockquote>
+
+                  {/* 3 Metric Badges */}
+                  <div className="grid grid-cols-2 gap-3 mb-6">
+                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+                      <span className="text-xl font-black text-emerald-400 block font-display">
+                        {activeCase.metrics.weightLost}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                        Total Weight Loss
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+                      <span className="text-xl font-black text-violet-gradient block font-display">
+                        {activeCase.metrics.bodyFatDrop}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                        Body Fat Drop
+                      </span>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center col-span-2">
+                      <span className="text-xl font-black text-[var(--violet-bright)] block font-display">
+                        {activeCase.metrics.muscleAdded}
+                      </span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                        Verified Skeletal Muscle Added
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="text-xs text-[var(--text-muted)] mb-6 flex items-center gap-2">
+                    <Flame className="w-4 h-4 text-[var(--violet-primary)]" />
+                    <span>Protocol: <strong className="text-[var(--text-primary)]">{activeCase.protocol}</strong></span>
+                  </div>
+                </div>
+
+                {/* Bottom CTA */}
+                <button
+                  onClick={() => openModal('tour')}
+                  className="btn-violet text-xs py-4 px-6 w-full font-black flex items-center justify-center gap-2 cursor-pointer shadow-xl tracking-wider"
+                >
+                  <span>CLAIM YOUR FREE 3D BODY SCAN & CONSULT</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
-          </ScrollReveal>
+          </div>
+        </ScrollReveal>
+
+        {/* 3 Trust Achievement Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <TiltCard maxTilt={6} className="p-6 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+            <span className="block text-4xl font-black text-violet-gradient font-display">
+              <AnimatedCounter end={50000} suffix="+" duration={2000} />
+            </span>
+            <span className="text-xs uppercase tracking-wider text-[var(--text-primary)] font-bold mt-1.5 block">
+              Documented Member Transformations
+            </span>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
+              Proven results across fat loss, functional athletics & hypertrophy.
+            </p>
+          </TiltCard>
+
+          <TiltCard maxTilt={6} className="p-6 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+            <span className="block text-4xl font-black text-emerald-400 font-display">
+              100%
+            </span>
+            <span className="text-xs uppercase tracking-wider text-[var(--text-primary)] font-bold mt-1.5 block">
+              Natural Drug-Free Protocols
+            </span>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
+              Pure progressive overload, whole foods, and cold contrast recovery.
+            </p>
+          </TiltCard>
+
+          <TiltCard maxTilt={6} className="p-6 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+            <span className="block text-4xl font-black text-violet-gradient font-display">
+              14 Days
+            </span>
+            <span className="text-xs uppercase tracking-wider text-[var(--text-primary)] font-bold mt-1.5 block">
+              Noticeable Energy & Strength Surge
+            </span>
+            <p className="text-xs text-[var(--text-muted)] mt-1">
+              Members feel the physiological shift within their initial 2 weeks.
+            </p>
+          </TiltCard>
         </div>
       </div>
     </section>

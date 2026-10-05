@@ -2,35 +2,37 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '../components/ThemeContext';
 
+
 export const metadata: Metadata = {
-  title: 'RAW FIT GYM | Premium Gym Franchise & Luxury Athletic Club',
+  metadataBase: new URL('https://fitandfab.com'),
+  title: 'FIT&FAB | Human Performance Sanctuary • Feeling Good Being Fit',
   description:
-    'Explore RAW FIT GYM premium institutional gym franchise opportunities with PRIME (₹1.80 Cr) and LUXURY (₹3.20 Cr) formats. High-retention biomechanical strength, 4°C cryo cold plunge suites, and certified master coaching.',
+    'Being fit is the new sexy in this century. At FIT&FAB, we offer you the best & experienced trainers, Olympic calibrated iron, 4°C cryo contrast recovery, and permanent physical transformation.',
   keywords: [
+    'fit and fab',
+    'fit&fab gym',
     'gym franchise',
-    'fitness franchise india',
-    'raw fit gym',
-    'luxury gym franchise',
-    'prime gym franchise',
+    'fitness athlete',
+    'feeling good being fit',
+    'luxury gym',
     'cold plunge gym',
-    'fitness investment',
   ],
-  authors: [{ name: 'RAW FIT GYM Corporate' }],
+  authors: [{ name: 'FIT&FAB Performance' }],
   icons: {
     icon: '/favicon.svg',
   },
   openGraph: {
-    title: 'RAW FIT GYM | Premium Gym Franchise & Luxury Athletic Club',
+    title: 'FIT&FAB | Human Performance Sanctuary • Feeling Good Being Fit',
     description:
-      'Explore RAW FIT GYM premium gym franchise opportunities with PRIME and LUXURY formats designed for athletic performance and institutional profitability.',
-    url: 'https://rawfitgym.com',
-    siteName: 'RAW FIT GYM',
+      'Being fit is the new sexy in this century. At FIT&FAB, experience elite athletic training and 3D equipment showroom.',
+    url: 'https://fitandfab.com',
+    siteName: 'FIT&FAB',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=1200&q=80',
+        url: '/fitfab-hero-athlete.jpg',
         width: 1200,
-        height: 630,
-        alt: 'RAW FIT GYM Flagship Interior',
+        height: 675,
+        alt: 'FIT&FAB Hero Athlete',
       },
     ],
     locale: 'en_US',
@@ -47,6 +49,12 @@ export default function RootLayout({
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Syne:wght@700;800&family=Outfit:wght@700;800;900&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body className="antialiased selection:bg-[var(--gold-primary)] selection:text-black">
         <ThemeProvider>{children}</ThemeProvider>
@@ -54,3 +62,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -2,20 +2,22 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { RotateCw, Layers, Sparkles, Check, Info } from 'lucide-react';
+import { RotateCw, Layers, Sparkles, Check, Info, Activity } from 'lucide-react';
 
 interface ThreeDumbbellViewerProps {
   initialWeight?: number; // e.g. 32
+  compact?: boolean;
 }
 
 type MaterialTheme = 'gold' | 'titanium' | 'stealth';
 
-export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbellViewerProps) {
+export default function ThreeDumbbellViewer({ initialWeight = 32, compact = false }: ThreeDumbbellViewerProps) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [materialTheme, setMaterialTheme] = useState<MaterialTheme>('gold');
   const [isExploded, setIsExploded] = useState(false);
   const [weight, setWeight] = useState(initialWeight);
   const [isAutoRotate, setIsAutoRotate] = useState(true);
+  const [isRepMotion, setIsRepMotion] = useState(compact ? true : false);
 
   // References to animate parts between standard and exploded positions
   const explodedRef = useRef(false);
@@ -24,20 +26,26 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
   const autoRotateRef = useRef(true);
   autoRotateRef.current = isAutoRotate;
 
+  const repMotionRef = useRef(compact ? true : false);
+  repMotionRef.current = isRepMotion;
+
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
 
-    const width = container.clientWidth || 400;
-    const height = container.clientHeight || 380;
+    const width = container.clientWidth || (compact ? 200 : 400);
+    const height = container.clientHeight || (compact ? 160 : 380);
+    const aspect = width / height;
 
     // 1. Scene
     const scene = new THREE.Scene();
 
-    // 2. Camera - centered directly at (0, 0, 0)
-    const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
-    camera.position.set(0, 0.2, 5.0);
-    camera.lookAt(0, 0.2, 0);
+    // 2. Camera - dynamically adjusted distance so dumbbell never clips
+    const baseDist = compact ? 6.2 : 5.2;
+    const camZ = aspect < 1.2 ? baseDist * (1.2 / Math.max(aspect, 0.45)) : baseDist;
+    const camera = new THREE.PerspectiveCamera(compact ? 36 : 38, aspect, 0.1, 100);
+    camera.position.set(0, 0.15, camZ);
+    camera.lookAt(0, 0.15, 0);
 
     // 3. Renderer
     const renderer = new THREE.WebGLRenderer({
@@ -99,7 +107,7 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
       ctx.fillRect(0, 0, 512, 512);
 
       // Gold or chrome border ring
-      ctx.strokeStyle = theme === 'gold' ? '#d4af37' : theme === 'titanium' ? '#b0c4de' : '#444';
+      ctx.strokeStyle = theme === 'gold' ? '#a3e635' : theme === 'titanium' ? '#b0c4de' : '#444';
       ctx.lineWidth = 10;
       ctx.beginPath();
       ctx.arc(256, 256, 220, 0, Math.PI * 2);
@@ -108,21 +116,23 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
       // Brand text
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillStyle = theme === 'gold' ? '#ffd700' : theme === 'titanium' ? '#f0f4f8' : '#888890';
+      ctx.fillStyle = theme === 'gold' ? '#bef264' : theme === 'titanium' ? '#f0f4f8' : '#888890';
       ctx.font = '900 48px system-ui, sans-serif';
-      ctx.fillText('RAW FIT', 256, 175);
+      ctx.fillText('FIT&FAB', 256, 175);
 
       ctx.font = 'bold 22px system-ui, sans-serif';
-      ctx.fillStyle = theme === 'gold' ? '#ecd396' : '#9aa0a6';
+      ctx.fillStyle = theme === 'gold' ? '#d9f99d' : '#9aa0a6';
       ctx.fillText('OLYMPIC CALIBRATED', 256, 225);
 
       // Weight in KG
       ctx.font = '900 86px system-ui, sans-serif';
-      ctx.fillStyle = theme === 'gold' ? '#ff6b35' : theme === 'titanium' ? '#e2e8f0' : '#ffffff';
+      ctx.fillStyle = theme === 'gold' ? '#a3e635' : theme === 'titanium' ? '#e2e8f0' : '#ffffff';
       ctx.fillText(`${kg} KG`, 256, 310);
 
       const texture = new THREE.CanvasTexture(canvas);
       texture.anisotropy = 8;
+      texture.center.set(0.5, 0.5);
+      texture.rotation = -Math.PI / 2;
       return texture;
     }
 
@@ -277,7 +287,9 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
     const particles = new THREE.Points(particleGeo, particleMat);
     scene.add(particles);
 
-    // Initial angled display showcase
+    // Initial angled display showcase with scale factor to prevent any clipping
+    const rootScale = compact ? 0.78 : 1.0;
+    dumbbellRoot.scale.set(rootScale, rootScale, rootScale);
     dumbbellRoot.rotation.x = 0.25;
     dumbbellRoot.rotation.y = -0.55;
     dumbbellRoot.rotation.z = 0.15;
@@ -352,15 +364,28 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
 
       // Auto rotation when enabled and not dragging
       if (autoRotateRef.current && !isDragging) {
-        targetRotY += 0.006;
+        targetRotY += repMotionRef.current ? 0.003 : 0.006;
       }
 
       // Smooth dampening towards target rotation
       dumbbellRoot.rotation.y += (targetRotY - dumbbellRoot.rotation.y) * 0.08;
       dumbbellRoot.rotation.x += (targetRotX - dumbbellRoot.rotation.x) * 0.08;
 
-      // Gentle floating bob centered around origin
-      dumbbellRoot.position.set(0, 0.2 + Math.sin(time) * 0.04, 0);
+      // Dynamic exercise rep lifting motion vs gentle idle floating
+      if (repMotionRef.current && !explodedRef.current) {
+        // Biomechanical dumbbell curl tempo: 2.2s rep period
+        const cycle = (Math.sin(time * 2.2) + 1) / 2; // 0 to 1
+        const liftY = Math.pow(cycle, 1.35) * (compact ? 0.28 : 0.44);
+        const tiltZ = 0.15 + Math.sin(time * 2.2) * 0.22;
+        const tiltX = 0.25 + Math.sin(time * 2.2) * 0.12;
+
+        dumbbellRoot.position.set(0, (compact ? 0.05 : 0.15) + liftY, 0);
+        dumbbellRoot.rotation.z = tiltZ;
+        dumbbellRoot.rotation.x = tiltX;
+      } else {
+        dumbbellRoot.position.set(0, (compact ? 0.1 : 0.2) + Math.sin(time) * 0.04, 0);
+        dumbbellRoot.rotation.z = 0.15;
+      }
 
       // Exploded View smooth spring translation along X
       const targetLeftX = explodedRef.current ? -(baseOffsetX + 0.9) : -baseOffsetX;
@@ -384,10 +409,13 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
         const w = entry.contentRect.width;
         const h = entry.contentRect.height;
         if (w > 0 && h > 0) {
-          camera.aspect = w / h;
+          const asp = w / h;
+          camera.aspect = asp;
+          const z = asp < 1.2 ? baseDist * (1.2 / Math.max(asp, 0.45)) : baseDist;
+          camera.position.z = z;
           camera.updateProjectionMatrix();
           renderer.setSize(w, h);
-          camera.lookAt(0, 0, 0);
+          camera.lookAt(0, 0.15, 0);
         }
       }
     });
@@ -421,14 +449,14 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
         container.removeChild(dom);
       }
     };
-  }, [materialTheme, weight]);
+  }, [materialTheme, weight, compact]);
 
   return (
     <div className="relative flex flex-col items-center justify-between w-full h-full select-none">
       {/* 3D Canvas Stage */}
       <div
         ref={mountRef}
-        className="relative w-full h-[320px] sm:h-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden rounded-2xl"
+        className={`relative w-full ${compact ? 'h-[160px] sm:h-[180px]' : 'h-[320px] sm:h-[380px]'} cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden rounded-2xl`}
         title="Click and drag to rotate 3D equipment"
       >
         {/* Radial Ambient Backlight */}
@@ -462,68 +490,92 @@ export default function ThreeDumbbellViewer({ initialWeight = 32 }: ThreeDumbbel
         )}
       </div>
 
-      {/* Control Bar (Material Finish, Exploded View, Weight Preset) */}
-      <div className="w-full flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-[var(--border-subtle)] text-xs z-10">
-        {/* Finish Selector */}
-        <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-subtle)]">
-          <button
-            onClick={() => setMaterialTheme('gold')}
-            className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-              materialTheme === 'gold'
-                ? 'bg-[var(--gold-primary)] text-black font-extrabold shadow-sm'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            24K Gold
-          </button>
-          <button
-            onClick={() => setMaterialTheme('titanium')}
-            className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-              materialTheme === 'titanium'
-                ? 'bg-[var(--gold-primary)] text-black font-extrabold shadow-sm'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            Titanium
-          </button>
-          <button
-            onClick={() => setMaterialTheme('stealth')}
-            className={`px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
-              materialTheme === 'stealth'
-                ? 'bg-[var(--gold-primary)] text-black font-extrabold shadow-sm'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            Stealth Onyx
-          </button>
-        </div>
+      {/* Control Bar (Material Finish, Exploded View, Weight Preset) - hidden in compact mode */}
+      {!compact && (
+        <div className="w-full flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-[var(--border-subtle)] text-xs z-10">
+          {/* Finish Selector */}
+          <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-subtle)]">
+            <button
+              onClick={() => setMaterialTheme('gold')}
+              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+                materialTheme === 'gold'
+                  ? 'bg-[var(--volt-primary)] text-black shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Volt Edition
+            </button>
+            <button
+              onClick={() => setMaterialTheme('titanium')}
+              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+                materialTheme === 'titanium'
+                  ? 'bg-[var(--volt-primary)] text-black shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Titanium Pro
+            </button>
+            <button
+              onClick={() => setMaterialTheme('stealth')}
+              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+                materialTheme === 'stealth'
+                  ? 'bg-[var(--volt-primary)] text-black shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Stealth Onyx
+            </button>
+          </div>
 
-        {/* Action Buttons: Explode & Auto-Rotate */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setIsExploded(!isExploded)}
-            className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
-              isExploded
-                ? 'bg-[var(--gold-primary)] text-black border-[var(--gold-primary)] shadow-md'
-                : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-gold)]'
-            }`}
-            title="Toggle CAD Exploded View"
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>{isExploded ? 'Collapse' : 'Explode View'}</span>
-          </button>
+          {/* Action Buttons: Explode, Rep Motion & Auto-Rotate */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIsRepMotion(!isRepMotion)}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+                isRepMotion
+                  ? 'bg-[var(--volt-bright)] text-black border-[var(--volt-bright)] shadow-[0_0_12px_rgba(190,242,100,0.5)] font-black'
+                  : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
+              }`}
+              title="Toggle Dynamic Workout Reps Motion"
+            >
+              <Activity className="w-3.5 h-3.5" />
+              <span>{isRepMotion ? 'Rep Motion ON' : 'Lift Reps'}</span>
+            </button>
 
-          <button
-            onClick={() => setIsAutoRotate(!isAutoRotate)}
-            className={`p-1.5 rounded-full glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-gold)] transition-colors cursor-pointer text-[var(--text-secondary)] ${
-              isAutoRotate ? 'text-[var(--gold-primary)]' : ''
-            }`}
-            title={isAutoRotate ? 'Pause 360° rotation' : 'Resume 360° rotation'}
-          >
-            <RotateCw className={`w-3.5 h-3.5 ${isAutoRotate ? 'animate-spin' : ''}`} style={{ animationDuration: '8s' }} />
-          </button>
+            <button
+              onClick={() => setIsExploded(!isExploded)}
+              className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+                isExploded
+                  ? 'bg-[var(--volt-primary)] text-black border-[var(--volt-primary)] shadow-md font-black'
+                  : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
+              }`}
+              title="Toggle CAD Exploded View"
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>{isExploded ? 'Collapse' : 'Explode View'}</span>
+            </button>
+
+            <button
+              onClick={() => setIsAutoRotate(!isAutoRotate)}
+              className={`p-1.5 rounded-full glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-volt)] transition-colors cursor-pointer text-[var(--text-secondary)] ${
+                isAutoRotate ? 'text-[var(--volt-primary)]' : ''
+              }`}
+              title={isAutoRotate ? 'Pause 360° rotation' : 'Resume 360° rotation'}
+            >
+              <RotateCw className={`w-3.5 h-3.5 ${isAutoRotate ? 'animate-spin' : ''}`} style={{ animationDuration: '8s' }} />
+            </button>
+          </div>
         </div>
-      </div>
+      )}
+
+      {compact && (
+        <div className="w-full flex items-center justify-center gap-2 pt-1.5 text-[10px] text-gray-300 font-bold uppercase tracking-wider">
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--volt-bright)] animate-ping" />
+          <span className="text-[var(--volt-bright)] font-mono">CALIBRATED REP LIFT</span>
+          <span className="text-gray-500">•</span>
+          <span>360° IRON</span>
+        </div>
+      )}
     </div>
   );
 }

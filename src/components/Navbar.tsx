@@ -2,21 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTheme } from './ThemeContext';
-import {
-  Sun,
-  Moon,
-  Briefcase,
-  Dumbbell,
-  Menu,
-  X,
-  ArrowRight,
-  Sparkles,
-} from 'lucide-react';
+import { Sun, Moon, Menu, X, ArrowRight, ShoppingCart, Sparkles } from 'lucide-react';
 
 export default function Navbar() {
-  const { theme, toggleTheme, perspective, setPerspective, openModal } = useTheme();
+  const { theme, toggleTheme, openModal } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,136 +18,110 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = perspective === 'investor'
-    ? [
-        { label: 'Brand', href: '#brand' },
-        { label: 'Formats', href: '#formats' },
-        { label: 'ROI Model', href: '#calculator' },
-        { label: 'Revenue', href: '#revenue' },
-        { label: 'Roadmap', href: '#roadmap' },
-        { label: 'Criteria', href: '#site' },
-        { label: 'FAQ', href: '#faq' },
-      ]
-    : [
-        { label: 'Brand', href: '#brand' },
-        { label: 'Zones', href: '#zones' },
-        { label: 'Timetable', href: '#schedule' },
-        { label: 'Physique', href: '#bmi' },
-        { label: 'Results', href: '#transformations' },
-        { label: 'FAQ', href: '#faq' },
-      ];
+  const navLinks = [
+    { label: 'HOME', href: '#' },
+    { label: 'ABOUT', href: '#about' },
+    { label: 'CLASSES', href: '#programs' },
+    { label: 'SCHEDULE', href: '#schedule' },
+    { label: 'TRAINERS', href: '#trainers' },
+    { label: 'PAGES', href: '#transformations' },
+    { label: 'CONTACT', href: '#contact' },
+    { label: 'SHOP', href: '#shop' },
+  ];
 
   return (
     <>
-      {/* Top Ticker Announcement */}
-      <div className="bg-gradient-to-r from-[#9a7533] via-[#d4af37] to-[#ff6b35] text-black py-1.5 px-4 text-xs font-bold uppercase tracking-wider text-center flex items-center justify-center gap-2 relative z-50">
-        <Sparkles className="w-3.5 h-3.5 animate-spin shrink-0" style={{ animationDuration: '4s' }} />
-        <span className="truncate">Now Accepting Franchise Applications 2026–2027 • Exclusive Territory Rights Available</span>
+      {/* Top Ticker Bar with Volt Accent */}
+      <div className="bg-[#090b0e] text-white py-1.5 px-4 text-xs font-bold uppercase tracking-widest text-center flex items-center justify-center gap-2 relative z-50 border-b border-[var(--border-subtle)]">
+        <Sparkles className="w-3.5 h-3.5 text-[var(--volt-primary)] animate-spin shrink-0" style={{ animationDuration: '6s' }} />
+        <span className="truncate">EXCLUSIVE FIT&amp;FAB PASSES: 7-DAY COMPLIMENTARY TRIAL NOW OPEN</span>
         <button
-          onClick={() => openModal('franchise')}
-          className="underline ml-2 hover:opacity-80 hidden md:inline-block cursor-pointer font-extrabold shrink-0"
+          onClick={() => openModal('tour')}
+          className="text-[var(--volt-bright)] hover:underline ml-2 hidden sm:inline-block cursor-pointer font-black shrink-0"
         >
-          Check Eligibility →
+          Claim Now →
         </button>
       </div>
 
-      {/* Main Glass Navbar */}
+      {/* Main Sticky Glass Navbar */}
       <header
         className={`sticky top-0 z-40 transition-all duration-300 w-full ${
           scrolled
-            ? 'bg-[var(--navbar-bg)] backdrop-blur-xl border-b border-[var(--border-subtle)] shadow-xl py-2.5'
-            : 'bg-[var(--navbar-bg)]/80 backdrop-blur-md border-b border-[var(--border-subtle)]/40 py-3.5'
+            ? 'bg-[var(--navbar-bg)] backdrop-blur-2xl border-b border-[var(--border-volt)]/40 shadow-2xl py-3.5'
+            : 'bg-[var(--navbar-bg)]/80 backdrop-blur-md border-b border-[var(--border-subtle)] py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-          {/* Left: Brand Logo */}
+          {/* Logo: FIT&FAB */}
           <a href="#" className="flex items-center gap-2.5 group shrink-0">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#ffd700] via-[#cfa95c] to-[#9a7533] flex items-center justify-center font-black text-black text-lg shadow-md group-hover:scale-105 transition-transform duration-300 shrink-0">
-              RF
-            </div>
-            <div className="flex flex-col">
-              <div className="flex items-baseline gap-1">
-                <span className="font-black text-xl tracking-tight text-[var(--text-primary)]">
-                  RAW<span className="text-gold-gradient font-black">FIT</span>
-                </span>
-                <span className="text-[10px] font-extrabold tracking-[0.3em] text-[var(--gold-primary)] uppercase">
-                  GYM
-                </span>
-              </div>
-              <span className="text-[9px] tracking-widest text-[var(--text-muted)] font-semibold uppercase">
-                Life in Progress
-              </span>
-            </div>
+            <span className="text-2xl sm:text-3xl font-black tracking-tight text-white font-display group-hover:text-[var(--volt-bright)] transition-colors">
+              FIT<span className="text-[var(--volt-primary)]">&amp;</span>FAB
+            </span>
+            <span className="hidden sm:inline-block px-1.5 py-0.5 rounded text-[9px] font-black tracking-widest uppercase bg-[var(--volt-primary)]/15 text-[var(--volt-bright)] border border-[var(--volt-primary)]/30">
+              PRO
+            </span>
           </a>
 
-          {/* Center: Desktop Navigation Links (Evenly & Elegantly Spaced) */}
-          <nav className="hidden xl:flex items-center gap-7 2xl:gap-8 justify-center">
-            {navLinks.map((link) => (
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-7 2xl:gap-8 justify-center">
+            {navLinks.map((link, idx) => (
               <a
-                key={link.href}
+                key={link.label}
                 href={link.href}
-                className="text-xs font-bold uppercase tracking-wider text-[var(--text-secondary)] hover:text-[var(--gold-primary)] transition-colors duration-200 whitespace-nowrap"
+                className={`text-[13px] font-extrabold tracking-wider transition-all duration-200 whitespace-nowrap ${
+                  idx === 0
+                    ? 'text-white hover:text-[var(--volt-bright)] font-black'
+                    : 'text-gray-300 hover:text-[var(--volt-bright)]'
+                }`}
               >
                 {link.label}
               </a>
             ))}
           </nav>
 
-          {/* Right: Mode Selector + Theme Toggle + Primary CTA */}
-          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
-            {/* Perspective Selector (Investor vs Member) */}
-            <div className="hidden lg:flex items-center p-0.5 rounded-full glass-panel border border-[var(--border-gold)] text-[11px] font-bold gap-1 shrink-0">
-              <button
-                onClick={() => setPerspective('investor')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer shrink-0 ${
-                  perspective === 'investor'
-                    ? 'bg-[var(--gold-primary)] text-black font-extrabold shadow-sm'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                <Briefcase className="w-3.5 h-3.5 shrink-0" />
-                <span className="shrink-0">Investor</span>
-              </button>
-              <button
-                onClick={() => setPerspective('member')}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer shrink-0 ${
-                  perspective === 'member'
-                    ? 'bg-[var(--gold-primary)] text-black font-extrabold shadow-sm'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                <Dumbbell className="w-3.5 h-3.5 shrink-0" />
-                <span className="shrink-0">Athlete</span>
-              </button>
-            </div>
+          {/* Right Action: Cart Badge + Theme Switch + CTA */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Shopping Cart Icon in Lime Green Circle (matching reference image) */}
+            <a
+              href="#shop"
+              className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[var(--volt-primary)] text-black flex items-center justify-center font-bold shadow-[0_0_18px_rgba(163,230,53,0.5)] hover:scale-105 active:scale-95 transition-all cursor-pointer group"
+              title="View Cart & Gear"
+            >
+              <ShoppingCart className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-black group-hover:rotate-6 transition-transform" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-black text-[var(--volt-bright)] text-[10px] font-black rounded-full flex items-center justify-center border border-[var(--volt-primary)]">
+                  {cartCount}
+                </span>
+              )}
+            </a>
 
-            {/* Theme Toggle (Dark / Light) */}
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--border-gold)] transition-colors cursor-pointer shrink-0"
-              title={theme === 'dark' ? 'Switch to Ivory Luxury Light Mode' : 'Switch to Onyx Dark Mode'}
+              className="w-9 h-9 rounded-full glass-panel flex items-center justify-center text-[var(--text-primary)] hover:border-[var(--volt-primary)] transition-colors cursor-pointer shrink-0"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {theme === 'dark' ? (
                 <Sun className="w-4 h-4 text-[#ffd700]" />
               ) : (
-                <Moon className="w-4 h-4 text-[#474440]" />
+                <Moon className="w-4 h-4 text-[var(--volt-primary)]" />
               )}
             </button>
 
-            {/* Primary Action Button */}
+            {/* Prominent CTA Button: JOIN THE FORCE */}
             <button
-              onClick={() => openModal(perspective === 'investor' ? 'franchise' : 'tour')}
-              className="btn-gold text-xs py-2 px-4 shadow-lg flex items-center gap-1.5 shrink-0 whitespace-nowrap cursor-pointer font-bold tracking-wider"
+              onClick={() => openModal('tour')}
+              className="btn-volt text-xs py-2.5 px-4 sm:px-6 shadow-xl hidden sm:flex items-center gap-1.5 shrink-0 cursor-pointer font-black tracking-wider"
             >
-              <span className="whitespace-nowrap">{perspective === 'investor' ? 'Franchise Deck' : 'VIP Day Pass'}</span>
-              <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+              <span>JOIN THE FORCE</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
 
             {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden w-9 h-9 rounded-full glass-panel flex items-center justify-center text-[var(--text-primary)] shrink-0 cursor-pointer"
+              className="lg:hidden w-9 h-9 rounded-full glass-panel flex items-center justify-center text-white shrink-0 cursor-pointer"
               aria-label="Toggle Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -164,69 +130,34 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu Drawer */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[108px] z-40 bg-[var(--bg-primary)]/95 backdrop-blur-2xl p-6 flex flex-col justify-between overflow-y-auto border-t border-[var(--border-subtle)] xl:hidden animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="flex flex-col gap-6">
-            {/* Perspective Switcher for Mobile */}
-            <div className="flex items-center p-1 rounded-full glass-panel border border-[var(--border-gold)] text-xs font-semibold w-full">
-              <button
-                onClick={() => setPerspective('investor')}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-full transition-all ${
-                  perspective === 'investor'
-                    ? 'bg-[var(--gold-primary)] text-black font-bold shadow-md'
-                    : 'text-[var(--text-secondary)]'
-                }`}
-              >
-                <Briefcase className="w-4 h-4" />
-                <span>Investor View</span>
-              </button>
-              <button
-                onClick={() => setPerspective('member')}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-full transition-all ${
-                  perspective === 'member'
-                    ? 'bg-[var(--gold-primary)] text-black font-bold shadow-md'
-                    : 'text-[var(--text-secondary)]'
-                }`}
-              >
-                <Dumbbell className="w-4 h-4" />
-                <span>Athlete View</span>
-              </button>
-            </div>
-
-            {/* Links */}
-            <nav className="flex flex-col gap-3">
+        <div className="fixed inset-0 top-[98px] z-40 bg-[var(--bg-primary)]/98 backdrop-blur-3xl p-6 flex flex-col justify-between overflow-y-auto border-t border-[var(--border-subtle)] lg:hidden animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <a
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-lg font-bold uppercase tracking-wider text-[var(--text-primary)] hover:text-[var(--gold-primary)] py-2 border-b border-[var(--border-subtle)]"
+                  className="text-lg font-black uppercase tracking-wider text-white hover:text-[var(--volt-bright)] py-2.5 border-b border-[var(--border-subtle)] flex items-center justify-between"
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  <ArrowRight className="w-4 h-4 text-[var(--volt-primary)] opacity-60" />
                 </a>
               ))}
             </nav>
           </div>
 
-          <div className="flex flex-col gap-3 pt-6 border-t border-[var(--border-subtle)] mt-6">
+          <div className="pt-6 border-t border-[var(--border-subtle)] mt-6">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 openModal('tour');
               }}
-              className="btn-outline w-full py-3 text-center"
+              className="btn-volt w-full py-4 text-center font-black tracking-wider shadow-2xl"
             >
-              Book VIP Facility Tour
-            </button>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                openModal('franchise');
-              }}
-              className="btn-gold w-full py-3 text-center"
-            >
-              Request Franchise Dossier
+              JOIN THE FORCE NOW
             </button>
           </div>
         </div>

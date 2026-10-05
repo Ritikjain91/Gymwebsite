@@ -53,15 +53,15 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.35);
     scene.add(ambientLight);
 
-    const goldKeyLight = new THREE.DirectionalLight(0xffe6a3, 3.8);
-    goldKeyLight.position.set(3, 4, 3);
-    scene.add(goldKeyLight);
+    const sapphireKeyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+    sapphireKeyLight.position.set(3, 4, 3);
+    scene.add(sapphireKeyLight);
 
-    const rimLight = new THREE.DirectionalLight(0xd4af37, 2.8);
+    const rimLight = new THREE.DirectionalLight(0xbef264, 3.5);
     rimLight.position.set(-3, -2, -2);
     scene.add(rimLight);
 
-    const blueBackLight = new THREE.DirectionalLight(0x60a5fa, 1.1);
+    const blueBackLight = new THREE.DirectionalLight(0x65a30d, 2.2);
     blueBackLight.position.set(0, -4, 2);
     scene.add(blueBackLight);
 
@@ -74,32 +74,31 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
 
       // Background base
       if (mode === 'luxury') {
-        ctx.fillStyle = '#111113';
+        ctx.fillStyle = '#0d0f12';
       } else if (mode === 'titanium') {
-        ctx.fillStyle = '#2d3139';
+        ctx.fillStyle = '#1e232a';
       } else {
-        ctx.fillStyle = '#a88428';
+        ctx.fillStyle = '#111827';
       }
       ctx.fillRect(0, 0, 1024, 1024);
 
       // Radial gradient sheen
       const radGrad = ctx.createRadialGradient(512, 512, 100, 512, 512, 500);
       if (mode === 'luxury') {
-        radGrad.addColorStop(0, '#222226');
-        radGrad.addColorStop(0.65, '#121214');
-        radGrad.addColorStop(0.85, '#2b2a24');
-        radGrad.addColorStop(1, '#0e0e10');
+        radGrad.addColorStop(0, '#1c2214');
+        radGrad.addColorStop(0.65, '#0b0d10');
+        radGrad.addColorStop(0.85, '#1e2b0e');
+        radGrad.addColorStop(1, '#060708');
       } else if (mode === 'titanium') {
-        radGrad.addColorStop(0, '#64748b');
-        radGrad.addColorStop(0.5, '#334155');
-        radGrad.addColorStop(0.85, '#1e293b');
-        radGrad.addColorStop(1, '#0f172a');
+        radGrad.addColorStop(0, '#475569');
+        radGrad.addColorStop(0.5, '#1e293b');
+        radGrad.addColorStop(0.85, '#0f172a');
+        radGrad.addColorStop(1, '#020617');
       } else {
-        radGrad.addColorStop(0, '#f5deb3');
-        radGrad.addColorStop(0.3, '#d4af37');
-        radGrad.addColorStop(0.7, '#a67c1e');
-        radGrad.addColorStop(0.88, '#ffd700');
-        radGrad.addColorStop(1, '#664d12');
+        radGrad.addColorStop(0, '#2d3748');
+        radGrad.addColorStop(0.4, '#1a202c');
+        radGrad.addColorStop(0.7, '#171923');
+        radGrad.addColorStop(1, '#08080a');
       }
       ctx.fillStyle = radGrad;
       ctx.fillRect(0, 0, 1024, 1024);
@@ -107,10 +106,10 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       // Concentric machine lathe grooves
       ctx.strokeStyle =
         mode === 'luxury'
-          ? 'rgba(212, 175, 55, 0.18)'
+          ? 'rgba(163, 230, 53, 0.25)'
           : mode === 'titanium'
           ? 'rgba(255, 255, 255, 0.16)'
-          : 'rgba(255, 255, 255, 0.24)';
+          : 'rgba(163, 230, 53, 0.18)';
       ctx.lineWidth = 2;
       for (let r = 160; r < 480; r += 20) {
         ctx.beginPath();
@@ -119,7 +118,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       }
 
       // Hub outer rim ring
-      ctx.strokeStyle = mode === 'luxury' ? '#d4af37' : mode === 'titanium' ? '#94a3b8' : '#fff3c4';
+      ctx.strokeStyle = mode === 'luxury' ? '#a3e635' : mode === 'titanium' ? '#94a3b8' : '#bef264';
       ctx.lineWidth = 8;
       ctx.beginPath();
       ctx.arc(512, 512, 455, 0, Math.PI * 2);
@@ -132,23 +131,23 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       // Curved Text Around Plate Rim
       ctx.save();
       ctx.translate(512, 512);
-      ctx.fillStyle = mode === 'luxury' ? '#ecd396' : mode === 'titanium' ? '#f1f5f9' : '#141416';
+      ctx.fillStyle = mode === 'luxury' ? '#bef264' : mode === 'titanium' ? '#f1f5f9' : '#a3e635';
       ctx.font = 'bold 46px system-ui, -apple-system, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
       const topText =
         mode === 'luxury'
-          ? 'RAW FIT LUXURY • FLAGSHIP CLUB'
+          ? 'FIT&FAB • OLYMPIC CALIBRATED'
           : mode === 'titanium'
-          ? 'RAW FIT TITANIUM • PRECISION POD'
-          : 'RAW FIT PRIME • PERFORMANCE GYM';
+          ? 'FIT&FAB TITANIUM • PRECISION'
+          : 'FIT&FAB VOLT • HUMAN PERFORMANCE';
       const bottomText =
         mode === 'luxury'
-          ? 'OLYMPIC CALIBRATED • 50 KG'
+          ? 'HEAVY DUTY • 45 LBS / 20.4 KG'
           : mode === 'titanium'
           ? 'OLYMPIC CALIBRATED • 10 KG'
-          : 'OLYMPIC CALIBRATED • 25 KG';
+          : 'FEELING GOOD • BEING FIT';
 
       // Draw top arc text
       const topChars = topText.split('');
@@ -179,14 +178,14 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
 
       // Center Ring Stamp
       ctx.font = '900 68px system-ui, sans-serif';
-      ctx.fillStyle = mode === 'luxury' ? '#d4af37' : mode === 'titanium' ? '#38bdf8' : '#0a0a0a';
-      ctx.fillText('RAW FIT', 0, -50);
+      ctx.fillStyle = mode === 'luxury' ? '#bef264' : mode === 'titanium' ? '#ffffff' : '#a3e635';
+      ctx.fillText('FIT&FAB', 0, -50);
       ctx.font = 'bold 30px system-ui, sans-serif';
-      ctx.fillStyle = mode === 'luxury' ? '#f5f5f7' : mode === 'titanium' ? '#cbd5e1' : '#222';
-      ctx.fillText('LIFE IN PROGRESS', 0, 0);
+      ctx.fillStyle = mode === 'luxury' ? '#f5f5f7' : mode === 'titanium' ? '#cbd5e1' : '#e2e8f0';
+      ctx.fillText('FEELING GOOD • BEING FIT', 0, 0);
       ctx.font = '800 52px system-ui, sans-serif';
-      ctx.fillStyle = mode === 'luxury' ? '#ff7844' : mode === 'titanium' ? '#38bdf8' : '#991b1b';
-      ctx.fillText(mode === 'luxury' ? '50 KG' : mode === 'titanium' ? '10 KG' : '25 KG', 0, 56);
+      ctx.fillStyle = mode === 'luxury' ? '#a3e635' : mode === 'titanium' ? '#94a3b8' : '#bef264';
+      ctx.fillText(mode === 'luxury' ? '45 LBS' : mode === 'titanium' ? '10 KG' : '20.4 KG', 0, 56);
 
       ctx.restore();
 
@@ -470,21 +469,21 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           style={{
             background:
               edition === 'luxury'
-                ? 'radial-gradient(circle, rgba(212,175,55,0.45) 0%, rgba(255,107,53,0.15) 50%, transparent 70%)'
+                ? 'radial-gradient(circle, rgba(37,99,235,0.45) 0%, rgba(15,23,42,0.2) 50%, transparent 70%)'
                 : edition === 'titanium'
                 ? 'radial-gradient(circle, rgba(56,189,248,0.4) 0%, rgba(30,58,138,0.2) 60%, transparent 70%)'
-                : 'radial-gradient(circle, rgba(236,211,150,0.5) 0%, rgba(212,175,55,0.2) 60%, transparent 70%)',
+                : 'radial-gradient(circle, rgba(29,78,216,0.5) 0%, rgba(15,23,42,0.2) 60%, transparent 70%)',
           }}
         />
 
         {/* Exploded View Labels Overlay */}
         {isExploded && (
           <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3 z-10 animate-in fade-in duration-300">
-            <span className="self-end px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[10px] font-black uppercase text-gold-gradient">
-              ▲ Polyurethane Protective Bumper
+            <span className="self-end px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg">
+              ▲ High-Density Polyurethane Bumper
             </span>
-            <span className="self-start px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[10px] font-black uppercase text-gold-gradient">
-              ▼ CNC Stainless Hub Sleeve (50.4mm)
+            <span className="self-start px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg">
+              ▼ CNC Precision Hub Sleeve (50.4mm)
             </span>
           </div>
         )}
@@ -492,36 +491,36 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
 
       {/* Floating Interactive Badge, Explode & Switcher */}
       <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 mt-4 z-10 w-full mx-auto">
-        <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-gold)]">
-          <button
-            onClick={() => setEdition('prime')}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
-              edition === 'prime'
-                ? 'bg-[var(--gold-primary)] text-black shadow-md font-extrabold'
-                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-            }`}
-          >
-            Prime 25KG
-          </button>
+        <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-volt)] shadow-lg">
           <button
             onClick={() => setEdition('luxury')}
             className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'luxury'
-                ? 'bg-[var(--gold-primary)] text-black shadow-md font-extrabold'
+                ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
-            Luxury 50KG
+            Volt 45 LBS
+          </button>
+          <button
+            onClick={() => setEdition('prime')}
+            className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
+              edition === 'prime'
+                ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
+                : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+            }`}
+          >
+            Stealth Onyx
           </button>
           <button
             onClick={() => setEdition('titanium')}
             className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'titanium'
-                ? 'bg-[var(--gold-primary)] text-black shadow-md font-extrabold'
+                ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
             }`}
           >
-            Titanium 10KG
+            Titanium Pro
           </button>
         </div>
 
@@ -529,10 +528,10 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           {/* Explode View Toggle */}
           <button
             onClick={() => setIsExploded(!isExploded)}
-            className={`px-3 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+            className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
               isExploded
-                ? 'bg-[var(--gold-primary)] text-black border-[var(--gold-primary)] shadow-md'
-                : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-gold)]'
+                ? 'bg-[var(--volt-primary)] text-black border-[var(--volt-primary)] shadow-lg font-black'
+                : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
             }`}
             title="Toggle 3D Exploded View"
           >
@@ -541,7 +540,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           </button>
 
           <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] font-medium whitespace-nowrap">
-            <RotateCw className="w-3 h-3 animate-spin text-[var(--gold-primary)]" style={{ animationDuration: '6s' }} />
+            <RotateCw className="w-3 h-3 animate-spin text-[var(--blue-bright)]" style={{ animationDuration: '6s' }} />
             <span>Drag 360°</span>
           </div>
         </div>

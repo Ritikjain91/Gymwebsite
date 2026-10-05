@@ -33,16 +33,17 @@ export default function ThreeBackgroundMesh() {
     renderer.domElement.style.pointerEvents = 'none';
     container.appendChild(renderer.domElement);
 
-    // Create a 3D undulating terrain / wireframe mesh with gold vertices
+    // Create a 3D undulating terrain / wireframe mesh with sapphire and cyan vertices
     const cols = 35;
     const rows = 25;
     const count = cols * rows;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
-    const goldColor = new THREE.Color(0xd4af37);
-    const darkGold = new THREE.Color(0x9a7533);
-    const flameColor = new THREE.Color(0xff6b35);
+    const voltLime = new THREE.Color(0xa3e635);
+    const voltBright = new THREE.Color(0xbef264);
+    const deepVolt = new THREE.Color(0x65a30d);
+    const darkOnyx = new THREE.Color(0x1a2e05);
 
     let idx = 0;
     for (let i = 0; i < cols; i++) {
@@ -55,7 +56,7 @@ export default function ThreeBackgroundMesh() {
         positions[idx * 3 + 1] = y;
         positions[idx * 3 + 2] = z;
 
-        const mixColor = i % 4 === 0 ? flameColor : j % 3 === 0 ? goldColor : darkGold;
+        const mixColor = i % 4 === 0 ? voltBright : j % 3 === 0 ? voltLime : deepVolt;
         colors[idx * 3] = mixColor.r;
         colors[idx * 3 + 1] = mixColor.g;
         colors[idx * 3 + 2] = mixColor.b;

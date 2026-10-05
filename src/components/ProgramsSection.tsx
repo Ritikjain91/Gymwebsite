@@ -113,7 +113,7 @@ export default function ProgramsSection() {
               <div
                 onMouseEnter={() => setHoveredIdx(idx)}
                 onMouseLeave={() => setHoveredIdx(null)}
-                className="group relative rounded-3xl overflow-hidden glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-violet)] transition-all duration-500 flex flex-col justify-between min-h-[520px] sm:min-h-[580px] shadow-2xl hover:shadow-[0_20px_50px_rgba(168,85,247,0.15)]"
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-violet)] transition-all duration-500 flex flex-col justify-between min-h-[440px] sm:min-h-[580px] shadow-2xl hover:shadow-[0_20px_50px_rgba(168,85,247,0.15)]"
               >
                 {/* Background Editorial Image Layer */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
@@ -127,37 +127,37 @@ export default function ProgramsSection() {
                 </div>
 
                 {/* Top Section: Number & Tag */}
-                <div className="relative z-10 p-7 sm:p-9 flex items-center justify-between">
+                <div className="relative z-10 p-5 sm:p-9 flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <span className="text-2xl sm:text-3xl font-black text-violet-gradient font-display">
                       {prog.number}
                     </span>
                     <div className="h-4 w-px bg-[var(--border-light)]" />
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[var(--violet-bright)]">
+                    <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[var(--violet-bright)]">
                       {prog.tag}
                     </span>
                   </div>
 
-                  <div className="w-11 h-11 rounded-full border border-[var(--border-violet)] bg-black/60 backdrop-blur-md flex items-center justify-center text-[var(--text-primary)] group-hover:bg-[var(--violet-primary)] group-hover:text-black transition-all duration-300">
-                    <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+                  <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-[var(--border-violet)] bg-black/60 backdrop-blur-md flex items-center justify-center text-[var(--text-primary)] group-hover:bg-[var(--violet-primary)] group-hover:text-black transition-all duration-300">
+                    <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:rotate-45 transition-transform duration-300" />
                   </div>
                 </div>
 
                 {/* Bottom Section: Title, Benefit & Specs */}
-                <div className="relative z-10 p-7 sm:p-9 pt-0">
-                  <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors duration-300 mb-2 font-display">
+                <div className="relative z-10 p-5 sm:p-9 pt-0">
+                  <h3 className="text-2xl sm:text-5xl font-black uppercase tracking-tight text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors duration-300 mb-1.5 sm:mb-2 font-display">
                     {prog.title}
                   </h3>
 
-                  <p className="text-sm font-semibold text-[var(--text-secondary)] mb-4">
+                  <p className="text-xs sm:text-sm font-semibold text-[var(--text-secondary)] mb-3 sm:mb-4">
                     {prog.headline}
                   </p>
 
                   {/* Customer Benefit Callout */}
-                  <div className="p-3.5 rounded-2xl bg-black/60 backdrop-blur-md border border-[var(--border-violet)]/40 mb-5">
+                  <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl bg-black/60 backdrop-blur-md border border-[var(--border-violet)]/40 mb-4 sm:mb-5">
                     <div className="flex items-center gap-2 text-xs font-bold text-[var(--violet-bright)]">
-                      <Flame className="w-4 h-4 text-[var(--violet-primary)]" />
-                      <span>{prog.primaryBenefit}</span>
+                      <Flame className="w-4 h-4 text-[var(--violet-primary)] shrink-0" />
+                      <span className="leading-snug">{prog.primaryBenefit}</span>
                     </div>
                   </div>
 

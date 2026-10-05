@@ -93,11 +93,11 @@ export default function BmiCalculator() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
           {/* Inputs Column */}
           <ScrollReveal direction="right" delay={150} className="lg:col-span-6">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[var(--border-subtle)] flex flex-col gap-5 h-full">
-              <h3 className="text-lg font-black uppercase tracking-wider text-[var(--gold-primary)] border-b border-[var(--border-subtle)] pb-3">
+            <div className="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[var(--border-subtle)] flex flex-col gap-4 sm:gap-5 h-full">
+              <h3 className="text-base sm:text-lg font-black uppercase tracking-wider text-[var(--gold-primary)] border-b border-[var(--border-subtle)] pb-2.5 sm:pb-3">
                 Biometric Inputs
               </h3>
 
@@ -109,7 +109,7 @@ export default function BmiCalculator() {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => setGender('male')}
-                    className={`py-3 rounded-xl border font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
+                    className={`py-2.5 sm:py-3 rounded-xl border font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
                       gender === 'male'
                         ? 'border-[var(--gold-primary)] bg-[var(--gold-primary)]/15 text-[var(--text-primary)]'
                         : 'border-[var(--border-subtle)] text-[var(--text-secondary)]'
@@ -119,7 +119,7 @@ export default function BmiCalculator() {
                   </button>
                   <button
                     onClick={() => setGender('female')}
-                    className={`py-3 rounded-xl border font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
+                    className={`py-2.5 sm:py-3 rounded-xl border font-bold text-xs uppercase tracking-wider transition-all cursor-pointer ${
                       gender === 'female'
                         ? 'border-[var(--gold-primary)] bg-[var(--gold-primary)]/15 text-[var(--text-primary)]'
                         : 'border-[var(--border-subtle)] text-[var(--text-secondary)]'
@@ -166,7 +166,7 @@ export default function BmiCalculator() {
                 <label className="text-xs font-bold uppercase tracking-wider text-[var(--text-muted)] block mb-2">
                   Primary Athletic Target
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   {[
                     { id: 'hypertrophy', label: 'Hypertrophy', desc: 'Muscle Build' },
                     { id: 'fatloss', label: 'Shredding', desc: 'Fat Loss' },
@@ -175,7 +175,7 @@ export default function BmiCalculator() {
                     <button
                       key={g.id}
                       onClick={() => setGoal(g.id as any)}
-                      className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
+                      className={`p-2.5 sm:p-3 rounded-xl border text-center transition-all cursor-pointer ${
                         goal === g.id
                           ? 'border-[var(--gold-primary)] bg-[var(--gold-primary)]/15 text-[var(--text-primary)]'
                           : 'border-[var(--border-subtle)] text-[var(--text-secondary)]'
@@ -192,53 +192,53 @@ export default function BmiCalculator() {
 
           {/* Results Column */}
           <ScrollReveal direction="left" delay={200} className="lg:col-span-6">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-[var(--border-gold)] relative overflow-hidden shadow-2xl flex flex-col justify-between gap-6 h-full">
+            <div className="glass-panel p-5 sm:p-8 rounded-2xl sm:rounded-3xl border border-[var(--border-gold)] relative overflow-hidden shadow-2xl flex flex-col justify-between gap-5 sm:gap-6 h-full">
               <div>
-                <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-4 mb-6">
+                <div className="flex items-center justify-between border-b border-[var(--border-subtle)] pb-3.5 sm:pb-4 mb-4 sm:mb-6">
                   <div>
-                    <span className="text-xs uppercase font-extrabold tracking-widest text-[var(--gold-primary)]">
+                    <span className="text-[10px] sm:text-xs uppercase font-extrabold tracking-widest text-[var(--gold-primary)]">
                       Assessment Summary
                     </span>
-                    <h4 className="text-2xl font-black uppercase text-[var(--text-primary)]">
+                    <h4 className="text-xl sm:text-2xl font-black uppercase text-[var(--text-primary)]">
                       Target Output
                     </h4>
                   </div>
                   <div className="text-right">
-                    <span className="block text-3xl font-black text-gold-gradient">
+                    <span className="block text-2xl sm:text-3xl font-black text-gold-gradient">
                       BMI {assessment.bmi}
                     </span>
-                    <span className={`text-xs font-bold uppercase tracking-wider ${assessment.categoryColor}`}>
+                    <span className={`text-[11px] sm:text-xs font-bold uppercase tracking-wider ${assessment.categoryColor}`}>
                       {assessment.category}
                     </span>
                   </div>
                 </div>
 
                 {/* Nutrition Targets with TiltCard */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <TiltCard maxTilt={8} className="p-4 rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)]">
-                    <span className="block text-xs uppercase font-bold text-[var(--text-muted)]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+                  <TiltCard maxTilt={8} className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)]">
+                    <span className="block text-[11px] sm:text-xs uppercase font-bold text-[var(--text-muted)]">
                       Target Daily Energy
                     </span>
-                    <span className="text-2xl font-black text-[var(--flame-accent)]">
+                    <span className="text-xl sm:text-2xl font-black text-[var(--flame-accent)]">
                       {assessment.targetCalories.toLocaleString()} kcal
                     </span>
                   </TiltCard>
-                  <TiltCard maxTilt={8} className="p-4 rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)]">
-                    <span className="block text-xs uppercase font-bold text-[var(--text-muted)]">
+                  <TiltCard maxTilt={8} className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)]">
+                    <span className="block text-[11px] sm:text-xs uppercase font-bold text-[var(--text-muted)]">
                       Daily Protein Minimum
                     </span>
-                    <span className="text-2xl font-black text-gold-gradient">
+                    <span className="text-xl sm:text-2xl font-black text-gold-gradient">
                       {assessment.proteinGrams} g / day
                     </span>
                   </TiltCard>
                 </div>
 
                 {/* Protocol Recommendation */}
-                <div className="p-4 rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)] mb-6">
+                <div className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-primary)]/80 border border-[var(--border-subtle)] mb-4 sm:mb-6">
                   <span className="block text-xs uppercase font-bold text-[var(--gold-primary)] mb-1">
-                    Prescribed RawFit Training Split
+                    Prescribed Training Split
                   </span>
-                  <p className="text-sm font-semibold text-[var(--text-primary)]">
+                  <p className="text-xs sm:text-sm font-semibold text-[var(--text-primary)]">
                     {assessment.recommendedSplit}
                   </p>
                 </div>
@@ -247,10 +247,10 @@ export default function BmiCalculator() {
               {/* CTA to test in 3D Body Scan Room */}
               <button
                 onClick={() => openModal('tour')}
-                className="btn-gold w-full py-4 text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 shadow-xl cursor-pointer"
+                className="btn-gold w-full py-3.5 sm:py-4 text-xs sm:text-sm font-extrabold flex items-center justify-center gap-2 shadow-xl cursor-pointer"
               >
-                <span>Book In-Club 3D Body Scan & Free Trial</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>Book 3D Body Scan &amp; Free Trial</span>
+                <ArrowRight className="w-4 h-4 shrink-0" />
               </button>
             </div>
           </ScrollReveal>

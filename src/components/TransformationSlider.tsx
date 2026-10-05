@@ -142,7 +142,7 @@ export default function TransformationSlider() {
                     if (e.buttons === 1) handlePointerMove(e.clientX);
                   }}
                   onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
-                  className="relative w-full h-full min-h-[380px] sm:min-h-[520px] cursor-ew-resize overflow-hidden"
+                  className="relative w-full h-full min-h-[380px] sm:min-h-[520px] cursor-ew-resize overflow-hidden touch-none"
                 >
                   {/* Full image display */}
                   <img
@@ -159,41 +159,41 @@ export default function TransformationSlider() {
                     className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-[0_0_15px_rgba(255,255,255,0.8)]"
                     style={{ left: `${sliderPos}%` }}
                   >
-                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[var(--violet-primary)] border-2 border-white shadow-xl flex items-center justify-center text-white">
-                      <ArrowLeftRight className="w-4 h-4" />
+                    <div className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[var(--violet-primary)] border-2 border-white shadow-xl flex items-center justify-center text-white">
+                      <ArrowLeftRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                   </div>
 
                   {/* Top Tags */}
-                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between pointer-events-none">
-                    <span className="px-3.5 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-emerald-500/50 text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5" />
-                      Verified InBody 770 Scan
+                  <div className="absolute top-3 sm:top-6 left-3 sm:left-6 right-3 sm:right-6 flex items-center justify-between gap-2 pointer-events-none">
+                    <span className="px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-emerald-500/50 text-[10px] sm:text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                      <span>Verified InBody 770</span>
                     </span>
-                    <span className="px-3 py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[11px] font-black uppercase tracking-wider text-[var(--violet-bright)] border border-[var(--border-violet)]">
+                    <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-black/80 backdrop-blur-md text-[10px] sm:text-[11px] font-black uppercase tracking-wider text-[var(--violet-bright)] border border-[var(--border-violet)]">
                       {activeCase.metrics.timeline}
                     </span>
                   </div>
 
                   {/* Bottom Client Bar */}
-                  <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-black/85 backdrop-blur-xl border border-white/10 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+                  <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-black/85 backdrop-blur-xl border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-3 pointer-events-none">
                     <div>
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--violet-bright)] block">
+                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[var(--violet-bright)] block">
                         Client Profile
                       </span>
-                      <span className="text-base font-black text-white">
+                      <span className="text-sm sm:text-base font-black text-white">
                         {activeCase.name}, {activeCase.age}
                       </span>
-                      <span className="text-xs text-[var(--text-muted)] block">
+                      <span className="text-[11px] sm:text-xs text-[var(--text-muted)] block line-clamp-1">
                         {activeCase.role}
                       </span>
                     </div>
 
-                    <div className="text-right">
-                      <span className="text-[10px] font-extrabold uppercase tracking-widest text-[var(--text-muted)] block">
+                    <div className="sm:text-right">
+                      <span className="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[var(--text-muted)] block">
                         Head Master Coach
                       </span>
-                      <span className="text-sm font-black text-[var(--violet-bright)]">
+                      <span className="text-xs sm:text-sm font-black text-[var(--violet-bright)]">
                         {activeCase.coach}
                       </span>
                     </div>
@@ -202,69 +202,69 @@ export default function TransformationSlider() {
               </div>
 
               {/* Right Column: Verified Metrics & Quote */}
-              <div className="lg:col-span-5 p-7 sm:p-10 flex flex-col justify-between">
+              <div className="lg:col-span-5 p-5 sm:p-8 lg:p-10 flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-1 text-[var(--violet-bright)] mb-3">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-[var(--violet-bright)]" />
+                      <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-[var(--violet-bright)]" />
                     ))}
                     <span className="text-xs font-bold text-[var(--text-primary)] ml-2">
                       5.0 Verified Member Milestone
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-black uppercase text-[var(--text-primary)] mb-4 leading-snug font-display">
+                  <h3 className="text-lg sm:text-2xl font-black uppercase text-[var(--text-primary)] mb-3 sm:mb-4 leading-snug font-display">
                     &ldquo;{activeCase.headline}&rdquo;
                   </h3>
 
                   {/* Quote */}
-                  <blockquote className="p-4 rounded-2xl bg-[var(--bg-card)] border-l-4 border-[var(--violet-primary)] text-xs sm:text-sm text-[var(--text-secondary)] italic leading-relaxed mb-6">
+                  <blockquote className="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-[var(--bg-card)] border-l-4 border-[var(--violet-primary)] text-xs sm:text-sm text-[var(--text-secondary)] italic leading-relaxed mb-5 sm:mb-6">
                     &ldquo;{activeCase.quote}&rdquo;
                   </blockquote>
 
                   {/* 3 Metric Badges */}
-                  <div className="grid grid-cols-2 gap-3 mb-6">
-                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-                      <span className="text-xl font-black text-emerald-400 block font-display">
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5 sm:mb-6">
+                    <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+                      <span className="text-lg sm:text-xl font-black text-emerald-400 block font-display">
                         {activeCase.metrics.weightLost}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                      <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                         Total Weight Loss
                       </span>
                     </div>
 
-                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
-                      <span className="text-xl font-black text-violet-gradient block font-display">
+                    <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl glass-panel border border-[var(--border-subtle)] text-center">
+                      <span className="text-lg sm:text-xl font-black text-violet-gradient block font-display">
                         {activeCase.metrics.bodyFatDrop}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                      <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                         Body Fat Drop
                       </span>
                     </div>
 
-                    <div className="p-3.5 rounded-2xl glass-panel border border-[var(--border-subtle)] text-center col-span-2">
-                      <span className="text-xl font-black text-[var(--violet-bright)] block font-display">
+                    <div className="p-3 sm:p-3.5 rounded-xl sm:rounded-2xl glass-panel border border-[var(--border-subtle)] text-center col-span-2">
+                      <span className="text-lg sm:text-xl font-black text-[var(--violet-bright)] block font-display">
                         {activeCase.metrics.muscleAdded}
                       </span>
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
+                      <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)]">
                         Verified Skeletal Muscle Added
                       </span>
                     </div>
                   </div>
 
-                  <div className="text-xs text-[var(--text-muted)] mb-6 flex items-center gap-2">
-                    <Flame className="w-4 h-4 text-[var(--violet-primary)]" />
-                    <span>Protocol: <strong className="text-[var(--text-primary)]">{activeCase.protocol}</strong></span>
+                  <div className="text-xs text-[var(--text-muted)] mb-5 sm:mb-6 flex items-center gap-2">
+                    <Flame className="w-4 h-4 text-[var(--violet-primary)] shrink-0" />
+                    <span className="truncate">Protocol: <strong className="text-[var(--text-primary)]">{activeCase.protocol}</strong></span>
                   </div>
                 </div>
 
                 {/* Bottom CTA */}
                 <button
                   onClick={() => openModal('tour')}
-                  className="btn-violet text-xs py-4 px-6 w-full font-black flex items-center justify-center gap-2 cursor-pointer shadow-xl tracking-wider"
+                  className="btn-violet text-xs py-3.5 sm:py-4 px-4 sm:px-6 w-full font-black flex items-center justify-center gap-2 cursor-pointer shadow-xl tracking-wider text-center"
                 >
-                  <span>CLAIM YOUR FREE 3D BODY SCAN & CONSULT</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <span className="truncate">CLAIM FREE 3D BODY SCAN &amp; CONSULT</span>
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
               </div>
             </div>

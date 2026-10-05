@@ -63,11 +63,11 @@ export default function ContactSection() {
         </div>
 
         {/* 2-Column Contact Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
           {/* Left Column: Form */}
           <div className="lg:col-span-7">
             <ScrollReveal direction="right">
-              <div className="p-8 sm:p-10 rounded-3xl glass-panel border border-[var(--border-violet)] shadow-2xl bg-gradient-to-b from-[#140c1a] via-[var(--bg-card)] to-[#0c0910] relative">
+              <div className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-violet)] shadow-2xl bg-gradient-to-b from-[#140c1a] via-[var(--bg-card)] to-[#0c0910] relative">
                 {isSubmitted ? (
                   <div className="text-center py-10 flex flex-col items-center">
                     <div className="w-16 h-16 rounded-full bg-[var(--violet-primary)] flex items-center justify-center text-white mb-6 shadow-xl shadow-[rgba(168,85,247,0.4)]">
@@ -198,7 +198,7 @@ export default function ContactSection() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="btn-violet text-xs py-4 px-8 w-full font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-xl mt-4"
+                      className="btn-violet text-xs py-3.5 sm:py-4 px-4 sm:px-8 w-full font-black tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-xl mt-4"
                     >
                       {isSubmitting ? (
                         <span>PROCESSING VIP PASS...</span>
@@ -224,7 +224,7 @@ export default function ContactSection() {
           <div className="lg:col-span-5 flex flex-col gap-6">
             {/* Quick Contact & WhatsApp Action */}
             <ScrollReveal direction="left" delay={100}>
-              <div className="p-7 rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-5">
+              <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-5">
                 <h4 className="text-lg font-black uppercase text-[var(--text-primary)] font-display">
                   Direct Concierge & Support
                 </h4>
@@ -241,7 +241,7 @@ export default function ContactSection() {
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block">
                         Direct Phone Line
                       </span>
-                      <span className="text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors">
+                      <span className="text-xs sm:text-sm font-bold text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors break-words">
                         +91 90000 00000 / 011-4567-8900
                       </span>
                     </div>
@@ -274,7 +274,7 @@ export default function ContactSection() {
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--text-muted)] block">
                         Email Inquiries
                       </span>
-                      <span className="text-sm font-bold text-[var(--text-primary)]">
+                      <span className="text-xs sm:text-sm font-bold text-[var(--text-primary)] break-all sm:break-normal">
                         concierge@rawfitgym.com
                       </span>
                     </div>
@@ -285,7 +285,7 @@ export default function ContactSection() {
 
             {/* Operating Hours Card */}
             <ScrollReveal direction="left" delay={200}>
-              <div className="p-7 rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-4">
+              <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[var(--violet-glow)] flex items-center justify-center text-[var(--violet-bright)] shrink-0">
                     <Clock className="w-5 h-5" />
@@ -313,7 +313,7 @@ export default function ContactSection() {
 
             {/* Location & Map Preview Card */}
             <ScrollReveal direction="left" delay={300}>
-              <div className="p-7 rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-4">
+              <div className="p-5 sm:p-7 rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-subtle)] flex flex-col gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[var(--violet-glow)] flex items-center justify-center text-[var(--violet-bright)] shrink-0">
                     <MapPin className="w-5 h-5" />

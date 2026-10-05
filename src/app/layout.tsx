@@ -1,6 +1,16 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider } from '../components/ThemeContext';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: [
+    { media: '(prefers-color-scheme: dark)', color: '#060709' },
+    { media: '(prefers-color-scheme: light)', color: '#f4f6f8' },
+  ],
+};
 
 
 export const metadata: Metadata = {

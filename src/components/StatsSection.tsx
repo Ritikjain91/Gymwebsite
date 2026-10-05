@@ -39,25 +39,25 @@ export default function StatsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-[var(--border-subtle)]">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-8 sm:divide-x sm:divide-[var(--border-subtle)]">
             {stats.map((stat, idx) => (
               <div
                 key={idx}
-                className={`pt-6 sm:pt-0 ${idx !== 0 ? 'sm:pl-8' : ''} flex flex-col justify-between group`}
+                className={`p-3.5 sm:p-0 rounded-xl sm:rounded-none bg-white/[0.02] sm:bg-transparent border border-white/5 sm:border-0 ${idx !== 0 ? 'sm:pl-8' : ''} flex flex-col justify-between group`}
               >
                 <div>
-                  <div className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors duration-300 font-display">
+                  <div className="text-3xl min-[400px]:text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors duration-300 font-display">
                     <AnimatedCounter end={stat.value} suffix={stat.suffix} duration={2200} />
                   </div>
-                  <h3 className="text-xs sm:text-sm font-black uppercase tracking-widest text-[var(--violet-bright)] mt-2">
+                  <h3 className="text-[11px] sm:text-sm font-black uppercase tracking-wider text-[var(--violet-bright)] mt-1.5 sm:mt-2 leading-snug">
                     {stat.label}
                   </h3>
-                  <p className="text-xs text-[var(--text-muted)] mt-1.5 leading-relaxed hidden sm:block max-w-[220px]">
+                  <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-1 sm:mt-1.5 leading-relaxed hidden min-[480px]:block max-w-[220px]">
                     {stat.description}
                   </p>
                 </div>
 
-                <div className="mt-4 w-8 h-0.5 bg-[var(--border-violet)] group-hover:w-16 group-hover:bg-[var(--violet-primary)] transition-all duration-300" />
+                <div className="mt-3 sm:mt-4 w-6 sm:w-8 h-0.5 bg-[var(--border-violet)] group-hover:w-16 group-hover:bg-[var(--violet-primary)] transition-all duration-300" />
               </div>
             ))}
           </div>

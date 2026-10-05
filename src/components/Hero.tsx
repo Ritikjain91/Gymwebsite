@@ -252,9 +252,9 @@ export default function Hero() {
 
                 {/* The Headline using Montserrat 900 Ultra-Bold with Kinetic Word Hover */}
                 <h1
-                  className="text-5xl sm:text-7xl lg:text-7.5xl xl:text-8.5xl font-black uppercase text-white font-['Montserrat',sans-serif] tracking-[-0.035em] leading-[0.98] drop-shadow-[0_10px_35px_rgba(0,0,0,1)] transition-all duration-300"
+                  className="text-4xl min-[420px]:text-5xl sm:text-7xl lg:text-7.5xl xl:text-8.5xl font-black uppercase text-white font-['Montserrat',sans-serif] tracking-[-0.035em] leading-[0.98] drop-shadow-[0_10px_35px_rgba(0,0,0,1)] transition-all duration-300"
                 >
-                  <div className="flex flex-wrap items-baseline gap-x-4 sm:gap-x-6">
+                  <div className="flex flex-wrap items-baseline gap-x-3 sm:gap-x-6">
                     <span
                       onMouseEnter={() => setHoveredWord('FEELING')}
                       onMouseLeave={() => setHoveredWord(null)}
@@ -279,7 +279,7 @@ export default function Hero() {
                     </span>
                   </div>
 
-                  <div className="flex flex-wrap items-baseline gap-x-4 sm:gap-x-6 mt-1.5 sm:mt-2.5">
+                  <div className="flex flex-wrap items-baseline gap-x-3 sm:gap-x-6 mt-1 sm:mt-2.5">
                     <span
                       onMouseEnter={() => setHoveredWord('BEING')}
                       onMouseLeave={() => setHoveredWord(null)}
@@ -328,12 +328,12 @@ export default function Hero() {
             </ScrollReveal>
 
             {/* High-Converting Action CTAs: Signature Neon Lime Pill Button "JOIN THE FORCE" */}
-            <ScrollReveal direction="up" delay={280}>
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 w-full sm:w-auto">
+            <ScrollReveal direction="up" delay={280} className="w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
                 {/* The Signature "JOIN THE FORCE" Pill Button */}
                 <button
                   onClick={() => openModal('tour')}
-                  className="btn-volt text-sm sm:text-base py-4 px-8 sm:px-10 shadow-[0_0_30px_rgba(163,230,53,0.55)] flex items-center justify-center gap-3 cursor-pointer font-black group tracking-wider hover:shadow-[0_0_45px_rgba(190,242,100,0.85)] active:scale-95 transition-all duration-300"
+                  className="btn-volt text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-10 shadow-[0_0_30px_rgba(163,230,53,0.55)] flex items-center justify-center gap-3 cursor-pointer font-black group tracking-wider hover:shadow-[0_0_45px_rgba(190,242,100,0.85)] active:scale-95 transition-all duration-300 w-full sm:w-auto"
                 >
                   <Flame className="w-5 h-5 text-black group-hover:scale-125 transition-transform" />
                   <span>JOIN THE FORCE</span>
@@ -343,7 +343,7 @@ export default function Hero() {
                 {/* 3D Equipment Lab Button */}
                 <a
                   href="#3d-showroom"
-                  className="btn-outline text-xs sm:text-sm py-3.5 px-6 flex items-center justify-center gap-2.5 cursor-pointer font-extrabold hover:border-[var(--volt-bright)] hover:text-[var(--volt-bright)] hover:shadow-[0_0_20px_rgba(163,230,53,0.3)] transition-all"
+                  className="btn-outline text-xs sm:text-sm py-3 sm:py-3.5 px-6 flex items-center justify-center gap-2.5 cursor-pointer font-extrabold hover:border-[var(--volt-bright)] hover:text-[var(--volt-bright)] hover:shadow-[0_0_20px_rgba(163,230,53,0.3)] transition-all w-full sm:w-auto"
                 >
                   <Activity className="w-4 h-4 text-[var(--volt-bright)] animate-pulse" />
                   <span>INTERACTIVE 3D LAB</span>
@@ -353,7 +353,7 @@ export default function Hero() {
 
             {/* Proof Indicators & Biometrics */}
             <ScrollReveal direction="up" delay={360}>
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-1 text-xs text-gray-300 font-medium">
+              <div className="flex flex-wrap items-center gap-3 sm:gap-6 pt-1 text-xs text-gray-300 font-medium">
                 <div className="flex items-center gap-1.5">
                   <div className="flex text-[var(--volt-bright)]">
                     {[...Array(5)].map((_, i) => (
@@ -366,12 +366,12 @@ export default function Hero() {
                 <div className="h-4 w-px bg-[var(--border-subtle)] hidden sm:block" />
                 <div className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[var(--volt-bright)]" />
-                  <span className="text-gray-300 font-semibold">Zero Joining Fee This Week</span>
+                  <span className="text-gray-300 font-semibold">Zero Joining Fee</span>
                 </div>
                 <div className="h-4 w-px bg-[var(--border-subtle)] hidden sm:block" />
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-[var(--volt-primary)] animate-ping" />
-                  <span className="text-gray-300 font-semibold">Free 1-on-1 Master Coach Session</span>
+                  <span className="text-gray-300 font-semibold">Free Coach Session</span>
                 </div>
               </div>
             </ScrollReveal>
@@ -385,7 +385,7 @@ export default function Hero() {
               <div className="flex items-center gap-1.5 w-full">
                 <button
                   onClick={() => setHeroMode('athlete')}
-                  className={`flex-1 py-2 px-3 rounded-full text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 sm:px-3 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                     heroMode === 'athlete'
                       ? 'bg-[var(--volt-bright)] text-black shadow-[0_0_18px_rgba(190,242,100,0.6)]'
                       : 'text-gray-400 hover:text-white'
@@ -396,23 +396,23 @@ export default function Hero() {
                 </button>
                 <button
                   onClick={() => setHeroMode('lab')}
-                  className={`flex-1 py-2 px-3 rounded-full text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                  className={`flex-1 py-2 px-2.5 sm:px-3 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 transition-all cursor-pointer ${
                     heroMode === 'lab'
                       ? 'bg-[var(--volt-bright)] text-black shadow-[0_0_18px_rgba(190,242,100,0.6)]'
                       : 'text-gray-400 hover:text-white'
                   }`}
                 >
                   <Activity className="w-3.5 h-3.5" />
-                  <span>⚡ 3D Calibrated Lab</span>
+                  <span>⚡ 3D Lab</span>
                 </button>
               </div>
             </div>
 
             {/* MODE 1: MOVABLE ATHLETE EXERCISE CONTROLLER */}
             {heroMode === 'athlete' && (
-              <ScrollReveal direction="left" delay={150}>
+              <ScrollReveal direction="left" delay={150} className="w-full">
                 <div
-                  className="relative w-full max-w-[440px] mx-auto lg:ml-auto lg:mr-0 flex flex-col p-4 sm:p-5 rounded-3xl bg-[#090b10]/85 backdrop-blur-2xl border border-[var(--border-volt)] shadow-[0_20px_60px_rgba(0,0,0,0.9)] transition-all duration-300 z-20"
+                  className="relative w-full max-w-[440px] mx-auto lg:ml-auto lg:mr-0 flex flex-col p-3.5 sm:p-5 rounded-3xl bg-[#090b10]/85 backdrop-blur-2xl border border-[var(--border-volt)] shadow-[0_20px_60px_rgba(0,0,0,0.9)] transition-all duration-300 z-20"
                   style={{
                     transform: `perspective(1000px) rotateY(${mousePos.x * 0.1}deg) rotateX(${-mousePos.y * 0.1}deg)`,
                   }}
@@ -421,24 +421,24 @@ export default function Hero() {
                   <div className="absolute -inset-2 rounded-3xl bg-[var(--volt-primary)]/10 blur-xl pointer-events-none -z-1" />
 
                   {/* Header: Exercise Status & Target Muscle */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-3">
-                    <div className="flex items-center gap-2.5">
-                      <span className="relative flex h-2.5 w-2.5">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5 mb-2.5">
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--volt-primary)] opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[var(--volt-bright)]" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-[var(--volt-bright)]" />
                       </span>
                       <div>
-                        <span className="text-[10px] text-gray-400 uppercase font-mono font-bold tracking-wider block">
-                          REAL-TIME ATHLETE BIOMECHANICS
+                        <span className="text-[9px] sm:text-[10px] text-gray-400 uppercase font-mono font-bold tracking-wider block">
+                          REAL-TIME BIOMECHANICS
                         </span>
-                        <span className="text-xs font-black text-white uppercase tracking-wider">
+                        <span className="text-[11px] sm:text-xs font-black text-white uppercase tracking-wider">
                           Dumbbell Bicep Curls
                         </span>
                       </div>
                     </div>
 
                     <span
-                      className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-black uppercase tracking-wider border transition-all ${
+                      className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full text-[9px] sm:text-[10px] font-mono font-black uppercase tracking-wider border transition-all ${
                         exercisePhase === 'PEAK SQUEEZE'
                           ? 'bg-[var(--volt-bright)] text-black border-[var(--volt-bright)] shadow-[0_0_12px_rgba(190,242,100,0.6)] animate-pulse'
                           : exercisePhase === 'CONCENTRIC'
@@ -451,31 +451,31 @@ export default function Hero() {
                   </div>
 
                   {/* Rep Metrics & Telemetry Grid */}
-                  <div className="grid grid-cols-3 gap-2 py-2 mb-3 bg-black/50 rounded-2xl p-2.5 border border-white/5">
-                    <div className="flex flex-col items-center justify-center p-1.5 rounded-xl bg-white/[0.02]">
-                      <span className="text-[9px] uppercase tracking-wider text-gray-400 font-mono">Total Reps</span>
-                      <div className="flex items-baseline gap-1 mt-0.5">
-                        <span className="text-2xl font-black text-[var(--volt-bright)] font-mono leading-none">
+                  <div className="grid grid-cols-3 gap-1.5 sm:gap-2 py-1.5 mb-2.5 bg-black/50 rounded-2xl p-2 sm:p-2.5 border border-white/5">
+                    <div className="flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl bg-white/[0.02]">
+                      <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-gray-400 font-mono">Total Reps</span>
+                      <div className="flex items-baseline gap-0.5 sm:gap-1 mt-0.5">
+                        <span className="text-xl sm:text-2xl font-black text-[var(--volt-bright)] font-mono leading-none">
                           {repCount}
                         </span>
-                        <span className="text-[10px] text-gray-500 font-bold">/15</span>
+                        <span className="text-[9px] sm:text-[10px] text-gray-500 font-bold">/15</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center p-1.5 rounded-xl bg-white/[0.02]">
-                      <span className="text-[9px] uppercase tracking-wider text-gray-400 font-mono">Bicep Flex</span>
+                    <div className="flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl bg-white/[0.02]">
+                      <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-gray-400 font-mono">Bicep Flex</span>
                       <div className="flex items-baseline gap-0.5 mt-0.5">
-                        <span className="text-2xl font-black text-white font-mono leading-none">
+                        <span className="text-xl sm:text-2xl font-black text-white font-mono leading-none">
                           {Math.round(curlProgress * 100)}
                         </span>
-                        <span className="text-[11px] text-[var(--volt-bright)] font-bold">%</span>
+                        <span className="text-[10px] sm:text-[11px] text-[var(--volt-bright)] font-bold">%</span>
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-center justify-center p-1.5 rounded-xl bg-white/[0.02]">
-                      <span className="text-[9px] uppercase tracking-wider text-gray-400 font-mono">Power Output</span>
+                    <div className="flex flex-col items-center justify-center p-1 sm:p-1.5 rounded-xl bg-white/[0.02]">
+                      <span className="text-[8px] sm:text-[9px] uppercase tracking-wider text-gray-400 font-mono">Power</span>
                       <div className="flex items-baseline gap-0.5 mt-0.5">
-                        <span className="text-2xl font-black text-white font-mono leading-none">
+                        <span className="text-xl sm:text-2xl font-black text-white font-mono leading-none">
                           {powerWatts}
                         </span>
                         <span className="text-[9px] text-[var(--volt-primary)] font-bold">W</span>
@@ -483,15 +483,15 @@ export default function Hero() {
                     </div>
                   </div>
 
-                  {/* INTERACTIVE DRAGGABLE MOTION SLIDER (TAKE DUMBBELL UP & DOWN) */}
-                  <div className="p-3 rounded-2xl bg-black/70 border border-[var(--border-volt)] mb-3">
-                    <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-1.5">
+                  {/* INTERACTIVE DRAGGABLE MOTION SLIDER */}
+                  <div className="p-2.5 sm:p-3 rounded-2xl bg-black/70 border border-[var(--border-volt)] mb-2.5">
+                    <div className="flex items-center justify-between text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-gray-400 mb-1">
                       <span className="flex items-center gap-1 text-gray-300">
                         <SlidersHorizontal className="w-3 h-3 text-[var(--volt-bright)]" />
-                        <span>Drag to Move Dumbbell:</span>
+                        <span>Move Dumbbell:</span>
                       </span>
                       <span className="text-[var(--volt-bright)] font-bold">
-                        {curlProgress > 0.85 ? 'Peak Contraction' : curlProgress > 0.2 ? 'Lifting' : 'Extended Down'}
+                        {curlProgress > 0.85 ? 'Peak Squeeze' : curlProgress > 0.2 ? 'Lifting' : 'Extended Down'}
                       </span>
                     </div>
 
@@ -527,26 +527,26 @@ export default function Hero() {
                       />
                     </div>
 
-                    <div className="flex justify-between items-center text-[9px] font-mono uppercase text-gray-500 mt-1">
-                      <span>◄ Dumbbell Down (0%)</span>
-                      <span className="text-[var(--volt-primary)] font-bold">Active Motion Range</span>
-                      <span>Dumbbell Curled (100%) ►</span>
+                    <div className="flex justify-between items-center text-[8px] sm:text-[9px] font-mono uppercase text-gray-500 mt-0.5">
+                      <span>◄ Down (0%)</span>
+                      <span className="text-[var(--volt-primary)] font-bold">Active Motion</span>
+                      <span>Curled (100%) ►</span>
                     </div>
                   </div>
 
                   {/* Action Buttons: 1-Click Power Rep & Auto Pump Toggle */}
-                  <div className="flex items-center gap-2 pt-1">
+                  <div className="flex items-center gap-1.5 sm:gap-2 pt-0.5">
                     <button
                       onClick={triggerManualRep}
-                      className="flex-1 py-2.5 px-4 rounded-full bg-[var(--volt-primary)] text-black font-black text-xs uppercase tracking-wider hover:bg-[var(--volt-bright)] active:scale-95 transition-all shadow-[0_0_15px_rgba(163,230,53,0.5)] cursor-pointer flex items-center justify-center gap-2"
+                      className="flex-1 py-2 sm:py-2.5 px-3 sm:px-4 rounded-full bg-[var(--volt-primary)] text-black font-black text-[11px] sm:text-xs uppercase tracking-wider hover:bg-[var(--volt-bright)] active:scale-95 transition-all shadow-[0_0_15px_rgba(163,230,53,0.5)] cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2"
                     >
-                      <Zap className="w-4 h-4 fill-black" />
+                      <Zap className="w-3.5 h-3.5 fill-black" />
                       <span>⚡ Power Rep</span>
                     </button>
 
                     <button
                       onClick={() => setIsAutoExercise(!isAutoExercise)}
-                      className={`py-2.5 px-3.5 rounded-full border text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                      className={`py-2 sm:py-2.5 px-3 sm:px-3.5 rounded-full border text-[11px] sm:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                         isAutoExercise
                           ? 'bg-black/60 border-[var(--border-volt)] text-[var(--volt-bright)] shadow-[0_0_10px_rgba(163,230,53,0.3)]'
                           : 'glass-panel border-white/20 text-gray-400 hover:text-white'
@@ -554,12 +554,12 @@ export default function Hero() {
                       title={isAutoExercise ? 'Pause Auto Exercise' : 'Resume Auto Exercise'}
                     >
                       {isAutoExercise ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
-                      <span className="text-[11px]">{isAutoExercise ? 'Auto Reps' : 'Paused'}</span>
+                      <span>{isAutoExercise ? 'Auto' : 'Paused'}</span>
                     </button>
 
                     <button
                       onClick={() => setRepCount(0)}
-                      className="p-2.5 rounded-full glass-panel border border-white/10 hover:border-white/30 text-gray-400 hover:text-white transition-all cursor-pointer"
+                      className="p-2 sm:p-2.5 rounded-full glass-panel border border-white/10 hover:border-white/30 text-gray-400 hover:text-white transition-all cursor-pointer shrink-0"
                       title="Reset Rep Counter"
                     >
                       <Repeat className="w-3.5 h-3.5" />
@@ -589,33 +589,33 @@ export default function Hero() {
                   }}
                 >
                   {/* 3D Model Quick Switcher Tab (Plate vs Dumbbell) */}
-                  <div className="w-full flex items-center justify-between mb-2.5 pb-2.5 border-b border-[var(--border-subtle)] text-xs">
-                    <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-white/10">
+                  <div className="w-full flex items-center justify-between mb-2 pb-2 sm:mb-2.5 sm:pb-2.5 border-b border-[var(--border-subtle)] text-xs">
+                    <div className="flex items-center gap-1 sm:gap-1.5 p-1 rounded-full bg-black/60 border border-white/10">
                       <button
                         onClick={() => setActiveModel('plate')}
-                        className={`px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer ${
+                        className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                           activeModel === 'plate'
                             ? 'bg-[var(--volt-primary)] text-black shadow-[0_0_15px_rgba(163,230,53,0.5)]'
                             : 'text-gray-400 hover:text-white'
                         }`}
                       >
-                        <Disc className="w-3.5 h-3.5" />
+                        <Disc className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         <span>45LB Plate</span>
                       </button>
                       <button
                         onClick={() => setActiveModel('dumbbell')}
-                        className={`px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer ${
+                        className={`px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer ${
                           activeModel === 'dumbbell'
                             ? 'bg-[var(--volt-primary)] text-black shadow-[0_0_15px_rgba(163,230,53,0.5)]'
                             : 'text-gray-400 hover:text-white'
                         }`}
                       >
-                        <Dumbbell className="w-3.5 h-3.5" />
+                        <Dumbbell className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                         <span>32KG Hex</span>
                       </button>
                     </div>
 
-                    <span className="text-[10px] font-mono text-[var(--volt-bright)] font-bold uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="text-[9px] sm:text-[10px] font-mono text-[var(--volt-bright)] font-bold uppercase tracking-wider flex items-center gap-1 sm:gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[var(--volt-primary)] animate-ping" />
                       3D ACTIVE
                     </span>
@@ -625,7 +625,7 @@ export default function Hero() {
                   <div className="absolute -inset-4 rounded-full bg-gradient-to-tr from-[var(--volt-primary)]/25 via-transparent to-[var(--volt-bright)]/15 blur-3xl pointer-events-none scale-105 animate-pulse-volt" />
 
                   {/* 3D Model Component */}
-                  <div className="relative z-10 w-full min-h-[350px] flex items-center justify-center">
+                  <div className="relative z-10 w-full min-h-[300px] sm:min-h-[350px] flex items-center justify-center">
                     {activeModel === 'plate' ? (
                       <ThreePlateViewer initialEdition="luxury" />
                     ) : (
@@ -634,9 +634,9 @@ export default function Hero() {
                   </div>
 
                   {/* Movable hint */}
-                  <div className="mt-2 text-center text-[10px] uppercase tracking-widest text-gray-400 font-bold flex items-center justify-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--volt-primary)] animate-pulse" />
-                    <span>Interactive 3D Iron • Drag 360° • Click Explode &amp; Rep Lift</span>
+                  <div className="mt-2 text-center text-[9px] sm:text-[10px] uppercase tracking-wider text-gray-400 font-bold flex items-center justify-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--volt-primary)] animate-pulse shrink-0" />
+                    <span>Drag 360° • Click Explode &amp; Rep Lift</span>
                   </div>
                 </div>
               </ScrollReveal>

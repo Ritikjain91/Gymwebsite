@@ -460,7 +460,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
       {/* 3D Stage Canvas Container */}
       <div
         ref={mountRef}
-        className="relative w-full aspect-square max-w-[360px] sm:max-w-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden mx-auto"
+        className="relative w-full aspect-square max-w-[320px] sm:max-w-[380px] cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden mx-auto touch-none"
         title="Click and drag to rotate 3D plate"
       >
         {/* Ambient Glow behind plate */}
@@ -479,22 +479,22 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
         {/* Exploded View Labels Overlay */}
         {isExploded && (
           <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3 z-10 animate-in fade-in duration-300">
-            <span className="self-end px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg">
-              ▲ High-Density Polyurethane Bumper
+            <span className="self-end px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[9px] sm:text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg truncate max-w-[48%]">
+              ▲ Polyurethane Bumper
             </span>
-            <span className="self-start px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg">
-              ▼ CNC Precision Hub Sleeve (50.4mm)
+            <span className="self-start px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-blue)] text-[9px] sm:text-[10px] font-black uppercase text-[var(--blue-bright)] shadow-lg truncate max-w-[48%]">
+              ▼ Hub Sleeve (50.4mm)
             </span>
           </div>
         )}
       </div>
 
       {/* Floating Interactive Badge, Explode & Switcher */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 mt-4 z-10 w-full mx-auto">
-        <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-volt)] shadow-lg">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-2.5 mt-3 sm:mt-4 z-10 w-full mx-auto">
+        <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-volt)] shadow-lg max-w-full overflow-x-auto no-scrollbar">
           <button
             onClick={() => setEdition('luxury')}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'luxury'
                 ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -504,7 +504,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           </button>
           <button
             onClick={() => setEdition('prime')}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'prime'
                 ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -514,7 +514,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           </button>
           <button
             onClick={() => setEdition('titanium')}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
+            className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer whitespace-nowrap ${
               edition === 'titanium'
                 ? 'bg-[var(--volt-primary)] text-black shadow-md font-black'
                 : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -528,7 +528,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
           {/* Explode View Toggle */}
           <button
             onClick={() => setIsExploded(!isExploded)}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+            className={`px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
               isExploded
                 ? 'bg-[var(--volt-primary)] text-black border-[var(--volt-primary)] shadow-lg font-black'
                 : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
@@ -539,7 +539,7 @@ export default function ThreePlateViewer({ initialEdition = 'prime' }: ThreePlat
             <span>{isExploded ? 'Joined' : 'Deconstruct'}</span>
           </button>
 
-          <div className="flex items-center gap-1 text-xs text-[var(--text-muted)] font-medium whitespace-nowrap">
+          <div className="flex items-center gap-1 text-[11px] sm:text-xs text-[var(--text-muted)] font-medium whitespace-nowrap">
             <RotateCw className="w-3 h-3 animate-spin text-[var(--blue-bright)]" style={{ animationDuration: '6s' }} />
             <span>Drag 360°</span>
           </div>

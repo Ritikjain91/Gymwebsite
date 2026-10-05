@@ -12,12 +12,12 @@ export default function MobileActionBar() {
   return (
     <aside
       aria-label="Mobile quick action bar"
-      className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[var(--bg-surface)]/95 backdrop-blur-2xl border-t border-[var(--border-violet)]/40 p-2.5 flex items-center gap-2 shadow-2xl safe-area-pb"
+      className="fixed bottom-0 inset-x-0 z-40 sm:hidden bg-[var(--bg-surface)]/95 backdrop-blur-2xl border-t border-[var(--border-subtle)] p-2.5 flex items-center gap-2 shadow-2xl safe-area-pb"
     >
       {/* Pricing / Memberships Link */}
       <a
         href="#pricing"
-        className="flex-1 py-2.5 px-3 rounded-full glass-panel border border-[var(--border-subtle)] text-center text-xs font-black uppercase tracking-wider text-[var(--text-primary)] hover:border-[var(--border-violet)] transition-colors"
+        className="flex-1 py-2.5 px-3 rounded-full glass-panel border border-[var(--border-subtle)] text-center text-xs font-black uppercase tracking-wider text-[var(--text-primary)] hover:border-[var(--border-gold)] transition-colors"
       >
         Plans
       </a>
@@ -25,7 +25,7 @@ export default function MobileActionBar() {
       {/* Primary Free Trial Pass Button */}
       <button
         onClick={() => openModal('tour')}
-        className="flex-1 py-2.5 px-3 rounded-full btn-violet text-center text-xs font-black uppercase tracking-wider shadow-lg"
+        className="flex-1 py-2.5 px-3 rounded-full btn-volt text-center text-xs font-black uppercase tracking-wider shadow-lg cursor-pointer"
       >
         Free Trial Pass
       </button>

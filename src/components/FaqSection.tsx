@@ -39,10 +39,10 @@ export default function FaqSection() {
         {/* Category Toggle */}
         <ScrollReveal direction="up" delay={150}>
           <div className="flex justify-center mb-10">
-            <div className="inline-flex p-1 rounded-full glass-panel border border-[var(--border-gold)]">
+            <div className="inline-flex p-1 rounded-2xl sm:rounded-full glass-panel border border-[var(--border-gold)] max-w-full w-full sm:w-auto flex-col min-[480px]:flex-row gap-1">
               <button
                 onClick={() => setActiveCategory('franchise')}
-                className={`px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-extrabold uppercase tracking-wider transition-all cursor-pointer text-center ${
                   activeCategory === 'franchise'
                     ? 'bg-[var(--gold-primary)] text-black shadow-md'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -52,7 +52,7 @@ export default function FaqSection() {
               </button>
               <button
                 onClick={() => setActiveCategory('membership')}
-                className={`px-6 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl sm:rounded-full text-xs font-extrabold uppercase tracking-wider transition-all cursor-pointer text-center ${
                   activeCategory === 'membership'
                     ? 'bg-[var(--gold-primary)] text-black shadow-md'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -73,17 +73,17 @@ export default function FaqSection() {
                 <div className="rounded-2xl glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-gold)]/40 overflow-hidden transition-all duration-300">
                   <button
                     onClick={() => toggleFaq(faq.id)}
-                    className="w-full p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+                    className="w-full p-4 sm:p-6 text-left flex items-center justify-between gap-3 sm:gap-4 cursor-pointer"
                   >
-                    <span className="font-extrabold text-base sm:text-lg text-[var(--text-primary)]">
+                    <span className="font-extrabold text-sm sm:text-lg text-[var(--text-primary)] leading-snug">
                       {faq.question}
                     </span>
-                    <div className={`w-8 h-8 rounded-full bg-[var(--bg-primary)] flex items-center justify-center text-[var(--gold-primary)] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
-                      <ChevronDown className="w-4 h-4" />
+                    <div className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[var(--bg-primary)] flex items-center justify-center text-[var(--gold-primary)] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                      <ChevronDown className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </div>
                   </button>
                   {isOpen && (
-                    <div className="px-6 pb-6 pt-1 text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-subtle)] mt-1 animate-in fade-in duration-200">
+                    <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-1 text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed border-t border-[var(--border-subtle)] mt-1 animate-in fade-in duration-200">
                       {faq.answer}
                     </div>
                   )}

@@ -100,28 +100,28 @@ export default function PricingSection() {
 
           {/* Billing Switcher Toggle */}
           <ScrollReveal direction="up" delay={300}>
-            <div className="inline-flex items-center p-1.5 rounded-full glass-panel border border-[var(--border-blue)] mt-8 shadow-xl">
+            <div className="inline-flex items-center p-1 sm:p-1.5 rounded-full glass-panel border border-[var(--border-blue)] mt-6 sm:mt-8 shadow-xl max-w-full">
               <button
                 onClick={() => setIsAnnual(false)}
-                className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                className={`px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   !isAnnual
                     ? 'bg-[var(--blue-primary)] text-white shadow-lg font-black'
                     : 'text-[var(--text-muted)] hover:text-white'
                 }`}
               >
-                Monthly Billing
+                Monthly
               </button>
               <button
                 onClick={() => setIsAnnual(true)}
-                className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-2.5 ${
+                className={`px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 sm:gap-2.5 ${
                   isAnnual
                     ? 'bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg font-black'
                     : 'text-[var(--text-muted)] hover:text-white'
                 }`}
               >
-                <span>Annual Billing</span>
-                <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/25 text-emerald-400 text-[10px] font-black border border-emerald-500/40 animate-pulse">
-                  SAVE 25% + 2 MO FREE
+                <span>Annual</span>
+                <span className="px-2 py-0.5 rounded-full bg-emerald-500/25 text-emerald-400 text-[9px] sm:text-[10px] font-black border border-emerald-500/40 animate-pulse">
+                  SAVE 25%
                 </span>
               </button>
             </div>
@@ -129,14 +129,14 @@ export default function PricingSection() {
         </div>
 
         {/* 3 Pricing Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           {plans.map((plan, idx) => {
             const price = isAnnual ? plan.annualMonthlyPrice : plan.monthlyPrice;
             return (
               <ScrollReveal key={plan.id} direction="up" delay={100 * (idx + 1)}>
                 <TiltCard
                   maxTilt={plan.isPopular ? 6 : 4}
-                  className={`h-full p-8 sm:p-10 rounded-3xl flex flex-col justify-between transition-all duration-300 relative overflow-hidden ${
+                  className={`h-full p-6 sm:p-10 rounded-3xl flex flex-col justify-between transition-all duration-300 relative overflow-hidden ${
                     plan.isPopular
                       ? 'glass-panel border-2 border-glow-animated shadow-2xl shadow-[rgba(37,99,235,0.35)] bg-gradient-to-b from-[#0e172c] via-[#09101f] to-[#05070c] scale-100 lg:-translate-y-3'
                       : 'glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-blue)]/60 bg-gradient-to-b from-[var(--bg-card)] to-[#070911]'

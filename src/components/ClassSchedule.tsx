@@ -46,14 +46,14 @@ export default function ClassSchedule() {
 
         {/* Days of Week Tab Bar */}
         <ScrollReveal direction="up" delay={150}>
-          <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-4 mb-6 no-scrollbar">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-3 mb-4 sm:mb-6 no-scrollbar px-1 -mx-1 snap-x">
             {days.map((day) => {
               const isSelected = day === selectedDay;
               return (
                 <button
                   key={day}
                   onClick={() => setSelectedDay(day)}
-                  className={`px-5 py-2.5 rounded-full text-xs font-extrabold uppercase tracking-wider transition-all duration-300 border cursor-pointer shrink-0 whitespace-nowrap ${
+                  className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-extrabold uppercase tracking-wider transition-all duration-300 border cursor-pointer shrink-0 whitespace-nowrap snap-start ${
                     isSelected
                       ? 'bg-[var(--gold-primary)] text-black border-[var(--gold-primary)] shadow-md'
                       : 'glass-panel text-[var(--text-secondary)] border-[var(--border-subtle)] hover:border-[var(--border-gold)]'
@@ -68,12 +68,12 @@ export default function ClassSchedule() {
 
         {/* Category Filter Pills */}
         <ScrollReveal direction="up" delay={200}>
-          <div className="flex items-center sm:justify-center gap-2 overflow-x-auto pb-4 mb-8 text-xs font-bold no-scrollbar">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-3 mb-6 sm:mb-8 text-xs font-bold no-scrollbar px-1 -mx-1 snap-x">
             {['All', 'Strength', 'HIIT', 'Combat', 'Mobility', 'Hypertrophy'].map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-1.5 rounded-full transition-all cursor-pointer shrink-0 whitespace-nowrap ${
+                className={`px-3.5 sm:px-4 py-1.5 rounded-full transition-all cursor-pointer shrink-0 whitespace-nowrap snap-start ${
                   selectedCategory === cat
                     ? 'bg-[var(--text-primary)] text-[var(--bg-primary)] font-extrabold'
                     : 'bg-[var(--bg-surface-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -87,12 +87,12 @@ export default function ClassSchedule() {
 
         {/* Classes Grid with 3D Tilt */}
         {filteredClasses.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
             {filteredClasses.map((item, idx) => (
               <ScrollReveal key={item.id} direction="up" delay={idx * 100}>
                 <TiltCard
                   maxTilt={8}
-                  className="glass-panel p-6 rounded-3xl border border-[var(--border-subtle)] hover:border-[var(--border-gold)] transition-all duration-300 flex flex-col justify-between group hover:shadow-2xl h-full"
+                  className="glass-panel p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-[var(--border-subtle)] hover:border-[var(--border-gold)] transition-all duration-300 flex flex-col justify-between group hover:shadow-2xl h-full"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -105,33 +105,33 @@ export default function ClassSchedule() {
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-black uppercase text-[var(--text-primary)] mb-2 group-hover:text-gold-gradient transition-colors">
+                    <h3 className="text-lg sm:text-xl font-black uppercase text-[var(--text-primary)] mb-2 group-hover:text-gold-gradient transition-colors">
                       {item.title}
                     </h3>
 
                     <div className="space-y-1.5 text-xs text-[var(--text-secondary)] mb-6">
                       <div className="flex items-center gap-2">
-                        <Clock className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
+                        <Clock className="w-3.5 h-3.5 text-[var(--gold-primary)] shrink-0" />
                         <span>{item.time} ({item.duration})</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <User className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
+                        <User className="w-3.5 h-3.5 text-[var(--gold-primary)] shrink-0" />
                         <span>Coach: {item.coach}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Flame className="w-3.5 h-3.5 text-[var(--gold-primary)]" />
+                        <Flame className="w-3.5 h-3.5 text-[var(--gold-primary)] shrink-0" />
                         <span>Burn Estimate: {item.caloriesBurned}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between">
-                    <span className="text-xs text-[var(--text-muted)] font-semibold">
+                  <div className="pt-4 border-t border-[var(--border-subtle)] flex items-center justify-between gap-2">
+                    <span className="text-[11px] sm:text-xs text-[var(--text-muted)] font-semibold truncate">
                       {item.spotsLeft} Spots Available
                     </span>
                     <button
                       onClick={() => openModal('tour')}
-                      className="btn-gold text-xs py-2 px-4 font-bold flex items-center gap-1.5 cursor-pointer"
+                      className="btn-gold text-xs py-2 px-3 sm:px-4 font-bold flex items-center gap-1.5 cursor-pointer shrink-0"
                     >
                       <span>Reserve Pass</span>
                       <ArrowRight className="w-3 h-3" />

@@ -456,7 +456,7 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
       {/* 3D Canvas Stage */}
       <div
         ref={mountRef}
-        className={`relative w-full ${compact ? 'h-[160px] sm:h-[180px]' : 'h-[320px] sm:h-[380px]'} cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden rounded-2xl`}
+        className={`relative w-full ${compact ? 'h-[160px] sm:h-[180px]' : 'h-[300px] sm:h-[380px]'} cursor-grab active:cursor-grabbing flex items-center justify-center overflow-hidden rounded-2xl touch-none`}
         title="Click and drag to rotate 3D equipment"
       >
         {/* Radial Ambient Backlight */}
@@ -472,18 +472,18 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
 
         {/* Exploded View Labels Overlay */}
         {isExploded && (
-          <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-4 z-10 animate-in fade-in duration-300">
-            <div className="flex justify-between items-start">
-              <span className="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[10px] font-black uppercase text-gold-gradient">
-                ◄ Shock-Dampening Urethane Hex Head
+          <div className="absolute inset-0 pointer-events-none flex flex-col justify-between p-3 sm:p-4 z-10 animate-in fade-in duration-300">
+            <div className="flex justify-between items-start gap-1">
+              <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[9px] sm:text-[10px] font-black uppercase text-gold-gradient truncate max-w-[48%]">
+                ◄ Urethane Hex Head
               </span>
-              <span className="px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[10px] font-black uppercase text-gold-gradient">
-                Cold-Forged Locking Pin ►
+              <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-black/80 backdrop-blur-md border border-[var(--border-gold)] text-[9px] sm:text-[10px] font-black uppercase text-gold-gradient truncate max-w-[48%]">
+                Cold-Forged Pin ►
               </span>
             </div>
             <div className="flex justify-center">
-              <span className="px-3 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/20 text-[10px] font-bold uppercase text-white">
-                ● 1.2mm Diamond Knurling Biomechanical Grip
+              <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/20 text-[9px] sm:text-[10px] font-bold uppercase text-white truncate max-w-[90%]">
+                ● 1.2mm Diamond Knurl Biomechanical Grip
               </span>
             </div>
           </div>
@@ -492,12 +492,12 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
 
       {/* Control Bar (Material Finish, Exploded View, Weight Preset) - hidden in compact mode */}
       {!compact && (
-        <div className="w-full flex flex-wrap items-center justify-between gap-2.5 pt-3 border-t border-[var(--border-subtle)] text-xs z-10">
+        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-2.5 pt-2.5 sm:pt-3 border-t border-[var(--border-subtle)] text-xs z-10">
           {/* Finish Selector */}
-          <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-subtle)]">
+          <div className="flex items-center gap-1 p-1 rounded-full glass-panel border border-[var(--border-subtle)] max-w-full overflow-x-auto no-scrollbar">
             <button
               onClick={() => setMaterialTheme('gold')}
-              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
                 materialTheme === 'gold'
                   ? 'bg-[var(--volt-primary)] text-black shadow-sm'
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -507,7 +507,7 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
             </button>
             <button
               onClick={() => setMaterialTheme('titanium')}
-              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
                 materialTheme === 'titanium'
                   ? 'bg-[var(--volt-primary)] text-black shadow-sm'
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -517,7 +517,7 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
             </button>
             <button
               onClick={() => setMaterialTheme('stealth')}
-              className={`px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${
+              className={`px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
                 materialTheme === 'stealth'
                   ? 'bg-[var(--volt-primary)] text-black shadow-sm'
                   : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
@@ -528,10 +528,10 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
           </div>
 
           {/* Action Buttons: Explode, Rep Motion & Auto-Rotate */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setIsRepMotion(!isRepMotion)}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer border ${
                 isRepMotion
                   ? 'bg-[var(--volt-bright)] text-black border-[var(--volt-bright)] shadow-[0_0_12px_rgba(190,242,100,0.5)] font-black'
                   : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
@@ -539,12 +539,12 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
               title="Toggle Dynamic Workout Reps Motion"
             >
               <Activity className="w-3.5 h-3.5" />
-              <span>{isRepMotion ? 'Rep Motion ON' : 'Lift Reps'}</span>
+              <span>{isRepMotion ? 'Reps ON' : 'Lift Reps'}</span>
             </button>
 
             <button
               onClick={() => setIsExploded(!isExploded)}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1.5 transition-all cursor-pointer border ${
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer border ${
                 isExploded
                   ? 'bg-[var(--volt-primary)] text-black border-[var(--volt-primary)] shadow-md font-black'
                   : 'glass-panel text-[var(--text-primary)] border-[var(--border-subtle)] hover:border-[var(--border-volt)]'
@@ -552,12 +552,12 @@ export default function ThreeDumbbellViewer({ initialWeight = 32, compact = fals
               title="Toggle CAD Exploded View"
             >
               <Layers className="w-3.5 h-3.5" />
-              <span>{isExploded ? 'Collapse' : 'Explode View'}</span>
+              <span>{isExploded ? 'Collapse' : 'Explode'}</span>
             </button>
 
             <button
               onClick={() => setIsAutoRotate(!isAutoRotate)}
-              className={`p-1.5 rounded-full glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-volt)] transition-colors cursor-pointer text-[var(--text-secondary)] ${
+              className={`p-1 sm:p-1.5 rounded-full glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-volt)] transition-colors cursor-pointer text-[var(--text-secondary)] ${
                 isAutoRotate ? 'text-[var(--volt-primary)]' : ''
               }`}
               title={isAutoRotate ? 'Pause 360° rotation' : 'Resume 360° rotation'}

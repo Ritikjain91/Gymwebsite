@@ -133,32 +133,32 @@ export default function FranchiseModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="relative w-full max-w-2xl rounded-3xl glass-panel border border-[var(--border-gold)] p-6 sm:p-10 shadow-2xl overflow-y-auto max-h-[92vh]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-300">
+      <div className="relative w-full max-w-2xl rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-gold)] p-5 sm:p-10 shadow-2xl overflow-y-auto max-h-[92vh]">
         {/* Close Button */}
         <button
           onClick={closeModal}
-          className="absolute top-5 right-5 w-9 h-9 rounded-full bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-gold)] transition-colors cursor-pointer"
+          className="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[var(--bg-primary)] border border-[var(--border-subtle)] flex items-center justify-center text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-gold)] transition-colors cursor-pointer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {isSuccess ? (
           /* Success Screen */
-          <div className="text-center py-8 flex flex-col items-center gap-4 animate-in zoom-in-95 duration-300">
-            <div className="w-16 h-16 rounded-full bg-[var(--gold-primary)]/20 text-[var(--gold-primary)] flex items-center justify-center">
-              <CheckCircle2 className="w-10 h-10" />
+          <div className="text-center py-6 sm:py-8 flex flex-col items-center gap-4 animate-in zoom-in-95 duration-300">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[var(--gold-primary)]/20 text-[var(--gold-primary)] flex items-center justify-center">
+              <CheckCircle2 className="w-8 h-8 sm:w-10 sm:h-10" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-black uppercase text-gold-gradient">
+            <h3 className="text-xl sm:text-3xl font-black uppercase text-gold-gradient">
               {activeTab === 'franchise' ? 'Application Received' : 'VIP Tour Confirmed!'}
             </h3>
-            <p className="text-sm text-[var(--text-secondary)] max-w-md">
+            <p className="text-xs sm:text-sm text-[var(--text-secondary)] max-w-md">
               {activeTab === 'franchise'
                 ? 'Thank you for your interest in Raw Fit Gym. Our Investment Director will reach out to you within 24 hours to schedule a Zoom introductory call.'
                 : 'Your VIP Guided Pass has been generated. Our concierge team has sent your check-in code via SMS and WhatsApp.'}
             </p>
 
-            <div className="p-4 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-gold)]/40 w-full max-w-md text-left flex items-center justify-between mt-2">
+            <div className="p-3 sm:p-4 rounded-2xl bg-[var(--bg-primary)] border border-[var(--border-gold)]/40 w-full max-w-md text-left flex items-center justify-between mt-2">
               <div className="flex items-center gap-3">
                 <Download className="w-5 h-5 text-[var(--gold-primary)]" />
                 <div>
@@ -184,10 +184,10 @@ export default function FranchiseModal() {
           /* Form Screen */
           <div>
             {/* Tab Switcher */}
-            <div className="flex items-center gap-2 mb-6 border-b border-[var(--border-subtle)] pb-4">
+            <div className="flex items-center gap-2 sm:gap-4 mb-6 border-b border-[var(--border-subtle)] pb-3">
               <button
                 onClick={() => setActiveTab('franchise')}
-                className={`text-sm font-extrabold uppercase tracking-wider pb-1 transition-all ${
+                className={`flex-1 sm:flex-initial text-center sm:text-left text-xs sm:text-sm font-extrabold uppercase tracking-wider pb-2 transition-all cursor-pointer ${
                   activeTab === 'franchise'
                     ? 'text-[var(--gold-primary)] border-b-2 border-[var(--gold-primary)]'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
@@ -197,13 +197,13 @@ export default function FranchiseModal() {
               </button>
               <button
                 onClick={() => setActiveTab('tour')}
-                className={`text-sm font-extrabold uppercase tracking-wider pb-1 transition-all ml-4 ${
+                className={`flex-1 sm:flex-initial text-center sm:text-left text-xs sm:text-sm font-extrabold uppercase tracking-wider pb-2 transition-all cursor-pointer ${
                   activeTab === 'tour'
                     ? 'text-[var(--gold-primary)] border-b-2 border-[var(--gold-primary)]'
                     : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
                 }`}
               >
-                Book VIP Facility Tour
+                VIP Facility Tour
               </button>
             </div>
 

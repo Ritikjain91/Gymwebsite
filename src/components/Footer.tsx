@@ -126,10 +126,10 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)]">
-          <div className="flex flex-wrap items-center gap-4">
-            <span>© 2026 RAW FIT GYM. All Rights Reserved.</span>
-            <span>•</span>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--text-muted)] text-center sm:text-left pb-16 sm:pb-0">
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4">
+            <span>© 2026 FIT&amp;FAB. All Rights Reserved.</span>
+            <span className="hidden sm:inline">•</span>
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <span>•</span>
             <a href="#" className="hover:text-white transition-colors">Terms of Membership</a>

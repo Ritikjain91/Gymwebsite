@@ -45,20 +45,20 @@ export default function VisualStorytellingSection() {
           {/* Left Column: 3D Metallic Viewer with Real-Time Physics */}
           <div className="lg:col-span-7 flex flex-col items-center justify-center">
             <ScrollReveal direction="right">
-              <div className="relative w-full max-w-[520px] rounded-3xl glass-panel border border-[var(--border-volt)] p-6 sm:p-8 shadow-2xl bg-gradient-to-b from-[#0e1408] via-[var(--bg-card)] to-[#070a04]">
+              <div className="relative w-full max-w-[520px] rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-volt)] p-4 sm:p-8 shadow-2xl bg-gradient-to-b from-[#0e1408] via-[var(--bg-card)] to-[#070a04]">
                 {/* 3D Viewer Header */}
-                <div className="flex items-center justify-between mb-4 pb-4 border-b border-[var(--border-subtle)]">
+                <div className="flex flex-col min-[480px]:flex-row min-[480px]:items-center justify-between gap-3 mb-4 pb-4 border-b border-[var(--border-subtle)]">
                   <div>
-                    <span className="text-[11px] font-black uppercase tracking-widest text-[var(--volt-bright)] block">
+                    <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest text-[var(--volt-bright)] block">
                       3D Asset Viewer
                     </span>
-                    <h3 className="text-lg font-black uppercase text-[var(--text-primary)]">
+                    <h3 className="text-base sm:text-lg font-black uppercase text-[var(--text-primary)]">
                       Calibrated Solid Steel Dumbbell
                     </h3>
                   </div>
 
                   {/* Weight Toggle Buttons */}
-                  <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-[var(--border-subtle)]">
+                  <div className="flex items-center gap-1.5 p-1 rounded-full bg-black/60 border border-[var(--border-subtle)] self-start min-[480px]:self-auto">
                     {([16, 24, 32, 48] as const).map((w) => (
                       <button
                         key={w}
@@ -76,7 +76,7 @@ export default function VisualStorytellingSection() {
                 </div>
 
                 {/* 3D Canvas Box */}
-                <div className="relative min-h-[320px] sm:min-h-[380px] flex items-center justify-center">
+                <div className="relative min-h-[300px] sm:min-h-[380px] flex items-center justify-center">
                   <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(37,99,235,0.22),transparent_65%)] pointer-events-none blur-2xl" />
                   <ThreeDumbbellViewer initialWeight={selectedWeight} />
                 </div>
@@ -145,10 +145,10 @@ export default function VisualStorytellingSection() {
               <div className="pt-2">
                 <button
                   onClick={() => openModal('tour')}
-                  className="btn-blue text-xs py-4 px-8 w-full font-black flex items-center justify-center gap-2 cursor-pointer shadow-xl tracking-wider"
+                  className="btn-blue text-xs py-3.5 sm:py-4 px-4 sm:px-8 w-full font-black flex items-center justify-center gap-2 cursor-pointer shadow-xl tracking-wider text-center"
                 >
                   <span>TEST OUR EQUIPMENT ON A VIP DAY PASS</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 shrink-0" />
                 </button>
               </div>
             </ScrollReveal>

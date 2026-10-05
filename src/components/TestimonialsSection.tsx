@@ -43,25 +43,25 @@ export default function TestimonialsSection() {
             <ScrollReveal key={test.id} direction="up" delay={100 * (idx + 1)}>
               <TiltCard
                 maxTilt={5}
-                className="p-8 sm:p-10 rounded-3xl glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-violet)] transition-all duration-300 flex flex-col justify-between h-full group hover:shadow-2xl hover:shadow-[rgba(168,85,247,0.12)] relative overflow-hidden"
+                className="p-5 sm:p-10 rounded-2xl sm:rounded-3xl glass-panel border border-[var(--border-subtle)] hover:border-[var(--border-violet)] transition-all duration-300 flex flex-col justify-between h-full group hover:shadow-2xl hover:shadow-[rgba(168,85,247,0.12)] relative overflow-hidden"
               >
                 {/* Subtle top-right glow */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[radial-gradient(circle,rgba(168,85,247,0.15),transparent_70%)] pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div>
                   {/* Top Bar with Avatar, Stars, and Verified Badge */}
-                  <div className="flex items-center justify-between gap-4 mb-6">
-                    <div className="flex items-center gap-4">
+                  <div className="flex items-center justify-between gap-3 sm:gap-4 mb-5 sm:mb-6">
+                    <div className="flex items-center gap-3 sm:gap-4">
                       <img
                         src={test.avatar}
                         alt={test.name}
-                        className="w-14 h-14 rounded-full object-cover border-2 border-[var(--border-violet)] shadow-md group-hover:scale-105 transition-transform"
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover border-2 border-[var(--border-violet)] shadow-md group-hover:scale-105 transition-transform shrink-0"
                       />
                       <div>
-                        <h3 className="text-lg font-black uppercase text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors">
+                        <h3 className="text-base sm:text-lg font-black uppercase text-[var(--text-primary)] group-hover:text-[var(--violet-bright)] transition-colors">
                           {test.name}
                         </h3>
-                        <span className="text-xs text-[var(--text-muted)] block">
+                        <span className="text-[11px] sm:text-xs text-[var(--text-muted)] block">
                           {test.role}
                         </span>
                       </div>
